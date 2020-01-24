@@ -4,7 +4,7 @@
 
 #include <QPainter>
 
-#include <Pentagone/PentagoneView.hpp>
+#include <Spline/SplineView.hpp>
 #include <cmath>
 // Disclaimer:
 // Part of the code comes from splineeditor.cpp from
@@ -12,8 +12,8 @@
 // Copyright (C) 2016 The Qt Company Ltd.
 // https://github.com/qt/qtdeclarative/blob/dev/tools/qmleasing/splineeditor.cpp
 #include <wobjectimpl.h>
-W_OBJECT_IMPL(Pentagone::View)
-namespace Pentagone
+W_OBJECT_IMPL(Spline::View)
+namespace Spline
 {
 View::View(QGraphicsItem* parent) : LayerView{parent}
 {
@@ -88,7 +88,7 @@ void View::paint_impl(QPainter* p) const
   }
 }
 
-void View::updatePentagone()
+void View::updateSpline()
 {
   m_spl = tinyspline::BSpline{3, 2, m_spline.points.size(), TS_CLAMPED};
   ts_bspline_set_ctrlp(
@@ -112,7 +112,7 @@ void View::mousePressEvent(QGraphicsSceneMouseEvent* e)
   {
     // Delete
 
-    updatePentagone();
+    updateSpline();
   }
 }
 
@@ -168,7 +168,7 @@ void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
      }
 
 
-    updatePentagone();
+    updateSpline();
     update();
   }
 }
