@@ -123,50 +123,9 @@ void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
     return;
   const auto mp = *m_clicked;
   const auto N = m_spline.points.size();
-  int j;
-  for(j=1;j<20;j++){
-    if(j==1 ||j==2 || j==3 || j==17|| j==18|| j==19){
-      //m_spline.points[j].setColor(QColor(170, 20, 20));
-    }
-  }
-
-  if(mp==1 ||mp==2 || mp==3 || mp==17|| mp==18|| mp==19)
-  //if (mp < N)
+  if (mp < N)
   {
     m_spline.points[mp] = p;
-    m_spline.points[mp+1] = p;
-    m_spline.points[mp+2] = p;
-
-    double distance;
-    double new_dist;
-    double new_scale;
-    double rotation;
-    double angle_sup;
-    int i;
-
-    double anglefixe = (2*PI)/5;
-    int cmpt_point = 0;
-    int num_point = 2;
-    new_dist = sqrt(pow(p.x()-0.5,2)+pow(p.y()-0.5,2));
-    rotation = acos((p.x()-0.5)/new_dist);
-    if(p.y()<0.5){
-      angle_sup = rotation;
-    }else{
-      angle_sup = -rotation;
-    }
-
-    for(i=1;i<20;i++){
-      if((i<mp) ||(i>mp+2)){
-        m_spline.points[i]={cos((num_point-2)*anglefixe-angle_sup)*new_dist+0.5,
-                            sin((num_point-2)*anglefixe-angle_sup)*new_dist+0.5};
-      }
-      cmpt_point++;
-      if(cmpt_point==3){
-        num_point++;
-        cmpt_point = 0;
-      }
-     }
-
 
     updateSpline();
     update();
@@ -182,7 +141,7 @@ void View::mouseReleaseEvent(QGraphicsSceneMouseEvent* e)
   }
   e->accept();
 }
-/*
+
 void View::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 {
   const auto newPos = mapFromCanvas(event->pos());
@@ -204,7 +163,7 @@ void View::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
   updateSpline();
   changed();
   update();
-}*/
+}
 
 optional<std::size_t> View::findControlPoint(QPointF point)
 {

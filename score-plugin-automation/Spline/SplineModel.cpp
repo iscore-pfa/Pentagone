@@ -22,65 +22,16 @@ ProcessModel::ProcessModel(
                             parent}
     , outlet{Process::make_outlet(Id<Process::Port>(0), this)}
 {
-
-  outlet->type = Process::PortType::Message;
-  //points p1 =  ({0., 0.});
-
   m_spline.points.push_back({0., 0.});
 
-  //double x = 0.4;
-  //double y = 0.075;
-  double xCenter = 0.5;
-  double yCenter = 0.5;
-  double longueur = 0.5;
-  double angle = 0;
-  double anglefixe = (2*PI)/5;
-//"p2" 2->4
-  m_spline.points.push_back({xCenter+ cos(angle+4*anglefixe)*longueur,yCenter+ sin(angle+4*anglefixe)*longueur});
-  m_spline.points.push_back({xCenter+ cos(angle+4*anglefixe)*longueur,yCenter+ sin(angle+4*anglefixe)*longueur});
-  m_spline.points.push_back({xCenter+ cos(angle+4*anglefixe)*longueur,yCenter+ sin(angle+4*anglefixe)*longueur});
-//"p3" 5->7
-  m_spline.points.push_back({xCenter+ cos(angle+5*anglefixe)*longueur,yCenter+ sin(angle+5*anglefixe)*longueur});
-  m_spline.points.push_back({xCenter+ cos(angle+5*anglefixe)*longueur,yCenter+ sin(angle+5*anglefixe)*longueur});
-  m_spline.points.push_back({xCenter+ cos(angle+5*anglefixe)*longueur,yCenter+ sin(angle+5*anglefixe)*longueur});
-//"p4" 8->10
-  m_spline.points.push_back({xCenter+ cos(angle+anglefixe)*longueur,yCenter+ sin(angle+anglefixe)*longueur});
-  m_spline.points.push_back({xCenter+ cos(angle+anglefixe)*longueur,yCenter+ sin(angle+anglefixe)*longueur});
-  m_spline.points.push_back({xCenter+ cos(angle+anglefixe)*longueur,yCenter+ sin(angle+anglefixe)*longueur});
-//"p5" 11->13
-  m_spline.points.push_back({xCenter+ cos(angle+2*anglefixe)*longueur,yCenter+ sin(angle+2*anglefixe)*longueur});
-  m_spline.points.push_back({xCenter+ cos(angle+2*anglefixe)*longueur,yCenter+ sin(angle+2*anglefixe)*longueur});
-  m_spline.points.push_back({xCenter+ cos(angle+2*anglefixe)*longueur,yCenter+ sin(angle+2*anglefixe)*longueur});
-//"p6" 14->16
-  m_spline.points.push_back({xCenter+ cos(angle+3*anglefixe)*longueur,yCenter+ sin(angle+3*anglefixe)*longueur});
-  m_spline.points.push_back({xCenter+ cos(angle+3*anglefixe)*longueur,yCenter+ sin(angle+3*anglefixe)*longueur});
-  m_spline.points.push_back({xCenter+ cos(angle+3*anglefixe)*longueur,yCenter+ sin(angle+3*anglefixe)*longueur});
-//"p7" 17->19
-  m_spline.points.push_back({xCenter+ cos(angle+4*anglefixe)*longueur,yCenter+ sin(angle+4*anglefixe)*longueur});
-  m_spline.points.push_back({xCenter+ cos(angle+4*anglefixe)*longueur,yCenter+ sin(angle+4*anglefixe)*longueur});
-  m_spline.points.push_back({xCenter+ cos(angle+4*anglefixe)*longueur,yCenter+ sin(angle+4*anglefixe)*longueur});
-/*
-  printf("entre 2 et 3 %d\n",pow(pow(m_spline.points[2].x()-m_spline.points[5].x(),2)
-  +pow(m_spline.points[2].y()-m_spline.points[5].y(),2),0.5));
+  m_spline.points.push_back({0.4, 0.075});
+  m_spline.points.push_back({0.45, 0.24});
+  m_spline.points.push_back({0.5, 0.5});
 
-  printf("entre 3 et 4 %d\n",pow(pow(m_spline.points[5].x()-m_spline.points[8].x(),2)
-  +pow(m_spline.points[5].y()-m_spline.points[8].y(),2),0.5));
-
-  printf("entre 4 et 5 %d\n",pow(pow(m_spline.points[8].x()-m_spline.points[11].x(),2)
-  +pow(m_spline.points[8].y()-m_spline.points[11].y(),2),0.5));
-
-  printf("entre 5 et 6 %d\n",sqrt(pow(m_spline.points[11].x()-m_spline.points[14].x(),2)
-  +pow(m_spline.points[11].y()-m_spline.points[14].y(),2)));
-
-  printf("entre 6 et 7 %d\n",sqrt(pow(m_spline.points[14].x()-m_spline.points[17].x(),2)
-  +pow(m_spline.points[14].y()-m_spline.points[17].y(),2)));
-*/
-
-/*
   m_spline.points.push_back({0.55, 0.76});
   m_spline.points.push_back({0.7, 0.9});
   m_spline.points.push_back({1.0, 1.0});
-*/
+
   init();
   metadata().setInstanceName(*this);
 }

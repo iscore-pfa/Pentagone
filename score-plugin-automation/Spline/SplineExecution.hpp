@@ -14,7 +14,7 @@ namespace Spline
 {
 namespace RecreateOnPlay
 {
-class Component 
+class Component
     : public ::Execution::
           ProcessComponent_T<Spline::ProcessModel, ossia::node_process>
 {

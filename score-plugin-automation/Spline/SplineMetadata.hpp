@@ -30,7 +30,7 @@ PROCESS_METADATA(
 /*
     PROCESS_METADATA(
         SCORE_PLUGIN_AUTOMATION_EXPORT,
-        Spline::ProcessModel, //triangle 
+        Spline::ProcessModel, //triangle
         "fe635d49-cdb9-471c-88b2-80d4d45712f9",
         "Spline",
         "triangle",
