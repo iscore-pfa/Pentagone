@@ -9,6 +9,10 @@
 #include <Metronome/MetronomeModel.hpp>
 #include <Spline/SplineModel.hpp>
 #include <Pentagone/PentagoneModel.hpp>
+#include <Square/SquareModel.hpp>
+#include <Rectangle/RectangleModel.hpp>
+#include <Triangle/TriangleModel.hpp>
+
 
 class QLabel;
 class QWidget;
@@ -109,6 +113,76 @@ namespace Pentagone
 class ProcessModel;
 class InspectorWidget final
     : public Process::InspectorWidgetDelegate_T<Pentagone::ProcessModel>
+{
+public:
+  explicit InspectorWidget(
+      const ProcessModel& object,
+      const score::DocumentContext& context,
+      QWidget* parent);
+
+private:
+  void on_addressChange(const Device::FullAddressAccessorSettings& newText);
+  void on_tweenChanged();
+
+  Device::AddressAccessorEditWidget* m_lineEdit{};
+  QCheckBox* m_tween{};
+
+  CommandDispatcher<> m_dispatcher;
+};
+}
+
+namespace Square
+{
+class ProcessModel;
+class InspectorWidget final
+    : public Process::InspectorWidgetDelegate_T<Square::ProcessModel>
+{
+public:
+  explicit InspectorWidget(
+      const ProcessModel& object,
+      const score::DocumentContext& context,
+      QWidget* parent);
+
+private:
+  void on_addressChange(const Device::FullAddressAccessorSettings& newText);
+  void on_tweenChanged();
+
+  Device::AddressAccessorEditWidget* m_lineEdit{};
+  QCheckBox* m_tween{};
+
+  CommandDispatcher<> m_dispatcher;
+};
+}
+
+
+namespace Rectangle
+{
+class ProcessModel;
+class InspectorWidget final
+    : public Process::InspectorWidgetDelegate_T<Rectangle::ProcessModel>
+{
+public:
+  explicit InspectorWidget(
+      const ProcessModel& object,
+      const score::DocumentContext& context,
+      QWidget* parent);
+
+private:
+  void on_addressChange(const Device::FullAddressAccessorSettings& newText);
+  void on_tweenChanged();
+
+  Device::AddressAccessorEditWidget* m_lineEdit{};
+  QCheckBox* m_tween{};
+
+  CommandDispatcher<> m_dispatcher;
+};
+}
+
+namespace Triangle
+{
+class ProcessModel;
+class InspectorWidget final
+    : public Process::InspectorWidgetDelegate_T<Triangle::ProcessModel>
 {
 public:
   explicit InspectorWidget(

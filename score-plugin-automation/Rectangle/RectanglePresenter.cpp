@@ -8,14 +8,14 @@
 
 #include <ossia/detail/math.hpp>
 
-#include <Triangle/TriangleModel.hpp>
-#include <Triangle/TrianglePresenter.hpp>
-#include <Triangle/TriangleView.hpp>
+#include <Rectangle/RectangleModel.hpp>
+#include <Rectangle/RectanglePresenter.hpp>
+#include <Rectangle/RectangleView.hpp>
 #include <wobjectimpl.h>
-namespace Triangle
+namespace Rectangle
 {
 Presenter::Presenter(
-    const Triangle::ProcessModel& layer,
+    const Rectangle::ProcessModel& layer,
     View* view,
     const Process::ProcessPresenterContext& ctx,
     QObject* parent)
@@ -23,12 +23,12 @@ Presenter::Presenter(
 {
   putToFront();
   connect(&m_layer, &ProcessModel::splineChanged, this, [&] {
-    m_view->setTriangle(m_layer.spline());
+    m_view->setRectangle(m_layer.spline());
   });
 
-  m_view->setTriangle(m_layer.spline());
+  m_view->setRectangle(m_layer.spline());
   connect(m_view, &View::changed, this, [&] {
-    CommandDispatcher<>{context().context.commandStack}.submit<ChangeTriangle>(
+    CommandDispatcher<>{context().context.commandStack}.submit<ChangeRectangle>(
         layer, m_view->spline());
   });
 
@@ -67,7 +67,7 @@ void Presenter::on_zoomRatioChanged(ZoomRatio r)
 
 void Presenter::parentGeometryChanged() {}
 
-const Triangle::ProcessModel& Presenter::model() const
+const Rectangle::ProcessModel& Presenter::model() const
 {
   return m_layer;
 }

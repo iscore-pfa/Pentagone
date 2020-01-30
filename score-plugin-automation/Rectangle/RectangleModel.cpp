@@ -5,13 +5,13 @@
 #include <ossia/editor/state/destination_qualifiers.hpp>
 
 #include <math.h>
-#include <Triangle/TriangleModel.hpp>
-#include <Triangle/TrianglePresenter.hpp>
+#include <Rectangle/RectangleModel.hpp>
+#include <Rectangle/RectanglePresenter.hpp>
 #include <wobjectimpl.h>
 
-W_OBJECT_IMPL(Triangle::ProcessModel)
+W_OBJECT_IMPL(Rectangle::ProcessModel)
 #define PI 3.14159265359
-namespace Triangle
+namespace Rectangle
 {
 ProcessModel::ProcessModel(
     const TimeVal& duration,
@@ -25,12 +25,17 @@ ProcessModel::ProcessModel(
 {
 
   outlet->type = Process::PortType::Message;
+  //points p1 =  ({0., 0.});
 
+  //m_spline.points.push_back({0., 0.});
+
+  //double x = 0.4;
+  //double y = 0.075;
   double xCenter = 0.5;
   double yCenter = 0.5;
   double longueur = 0.5;
   double angle = 0;
-  double anglefixe = (2*PI)/3;
+  double anglefixe = (2*PI)/4;
 //"p2" 2->4
   m_spline.points.push_back({xCenter+ cos(angle+1*anglefixe)*longueur,yCenter+ sin(angle+1*anglefixe)*longueur});
   m_spline.points.push_back({xCenter+ cos(angle+1*anglefixe)*longueur,yCenter+ sin(angle+1*anglefixe)*longueur});
@@ -44,6 +49,10 @@ ProcessModel::ProcessModel(
   m_spline.points.push_back({xCenter+ cos(angle+3*anglefixe)*longueur,yCenter+ sin(angle+3*anglefixe)*longueur});
   m_spline.points.push_back({xCenter+ cos(angle+3*anglefixe)*longueur,yCenter+ sin(angle+3*anglefixe)*longueur});
 //"p5" 11->13
+  m_spline.points.push_back({xCenter+ cos(angle+4*anglefixe)*longueur,yCenter+ sin(angle+4*anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+4*anglefixe)*longueur,yCenter+ sin(angle+4*anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+4*anglefixe)*longueur,yCenter+ sin(angle+4*anglefixe)*longueur});
+//"p6" 14->16
   m_spline.points.push_back({xCenter+ cos(angle+1*anglefixe)*longueur,yCenter+ sin(angle+1*anglefixe)*longueur});
   m_spline.points.push_back({xCenter+ cos(angle+1*anglefixe)*longueur,yCenter+ sin(angle+1*anglefixe)*longueur});
   m_spline.points.push_back({xCenter+ cos(angle+1*anglefixe)*longueur,yCenter+ sin(angle+1*anglefixe)*longueur});
@@ -126,18 +135,17 @@ void ProcessModel::setUnit(const State::Unit& u)
     unitChanged(u);
   }
 }
-
 }
 using namespace Spline;
 template <>
-void DataStreamReader::read(const Triangle::ProcessModel& autom)
+void DataStreamReader::read(const Rectangle::ProcessModel& autom)
 {
   m_stream << *autom.outlet << autom.m_spline << autom.m_tween;
 
   insertDelimiter();
 }
 template <>
-void DataStreamWriter::write(Triangle::ProcessModel& autom)
+void DataStreamWriter::write(Rectangle::ProcessModel& autom)
 {
   autom.outlet = Process::make_outlet(*this, &autom);
   m_stream >> autom.m_spline >> autom.m_tween;
@@ -146,17 +154,17 @@ void DataStreamWriter::write(Triangle::ProcessModel& autom)
 }
 
 template <>
-void JSONObjectReader::read(const Triangle::ProcessModel& autom)
+void JSONObjectReader::read(const Rectangle::ProcessModel& autom)
 {
   obj["Outlet"] = toJsonObject(*autom.outlet);
   JSONValueReader v{};
   v.readFrom(autom.m_spline);
-  obj["Triangle"] = v.val;
+  obj["Rectangle"] = v.val;
   obj["Tween"] = autom.tween();
 }
 
 template <>
-void JSONObjectWriter::write(Triangle::ProcessModel& autom)
+void JSONObjectWriter::write(Rectangle::ProcessModel& autom)
 {
   JSONObjectWriter writer{obj["Outlet"].toObject()};
   autom.outlet = Process::make_outlet(writer, &autom);
@@ -170,6 +178,6 @@ void JSONObjectWriter::write(Triangle::ProcessModel& autom)
 
   autom.setTween(obj["Tween"].toBool());
   JSONValueWriter v{};
-  v.val = obj["Triangle"];
+  v.val = obj["Rectangle"];
   v.writeTo(autom.m_spline);
 }

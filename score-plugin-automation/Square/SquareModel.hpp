@@ -5,18 +5,18 @@
 
 #include <ossia/dataflow/nodes/spline.hpp>
 
-#include <Triangle/TriangleMetadata.hpp>
+#include <Square/SquareMetadata.hpp>
 #include <score_plugin_automation_export.h>
 #include <verdigris>
 
-namespace Triangle
+namespace Square
 {
 
 class SCORE_PLUGIN_AUTOMATION_EXPORT ProcessModel
     : public Process::ProcessModel
 {
   SCORE_SERIALIZE_FRIENDS
-  PROCESS_METADATA_IMPL(Triangle::ProcessModel)
+  PROCESS_METADATA_IMPL(Square::ProcessModel)
 
   W_OBJECT(ProcessModel)
 
@@ -53,7 +53,7 @@ public:
   QString prettyName() const noexcept override;
 
   const ossia::nodes::spline_data& spline() const noexcept { return m_spline; }
-  void setTriangle(const ossia::nodes::spline_data& c)
+  void setSquare(const ossia::nodes::spline_data& c)
   {
     if (m_spline != c)
     {

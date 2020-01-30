@@ -8,14 +8,14 @@
 
 #include <ossia/detail/math.hpp>
 
-#include <Triangle/TriangleModel.hpp>
-#include <Triangle/TrianglePresenter.hpp>
-#include <Triangle/TriangleView.hpp>
+#include <Square/SquareModel.hpp>
+#include <Square/SquarePresenter.hpp>
+#include <Square/SquareView.hpp>
 #include <wobjectimpl.h>
-namespace Triangle
+namespace Square
 {
 Presenter::Presenter(
-    const Triangle::ProcessModel& layer,
+    const Square::ProcessModel& layer,
     View* view,
     const Process::ProcessPresenterContext& ctx,
     QObject* parent)
@@ -23,12 +23,12 @@ Presenter::Presenter(
 {
   putToFront();
   connect(&m_layer, &ProcessModel::splineChanged, this, [&] {
-    m_view->setTriangle(m_layer.spline());
+    m_view->setSquare(m_layer.spline());
   });
 
-  m_view->setTriangle(m_layer.spline());
+  m_view->setSquare(m_layer.spline());
   connect(m_view, &View::changed, this, [&] {
-    CommandDispatcher<>{context().context.commandStack}.submit<ChangeTriangle>(
+    CommandDispatcher<>{context().context.commandStack}.submit<ChangeSquare>(
         layer, m_view->spline());
   });
 
@@ -67,7 +67,7 @@ void Presenter::on_zoomRatioChanged(ZoomRatio r)
 
 void Presenter::parentGeometryChanged() {}
 
-const Triangle::ProcessModel& Presenter::model() const
+const Square::ProcessModel& Presenter::model() const
 {
   return m_layer;
 }

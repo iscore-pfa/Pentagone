@@ -4,7 +4,7 @@
 
 #include <QPainter>
 
-#include <Triangle/TriangleView.hpp>
+#include <Pentagone/PentagoneView.hpp>
 #include <cmath>
 // Disclaimer:
 // Part of the code comes from splineeditor.cpp from
@@ -12,8 +12,8 @@
 // Copyright (C) 2016 The Qt Company Ltd.
 // https://github.com/qt/qtdeclarative/blob/dev/tools/qmleasing/splineeditor.cpp
 #include <wobjectimpl.h>
-W_OBJECT_IMPL(Triangle::View)
-namespace Triangle
+W_OBJECT_IMPL(Pentagone::View)
+namespace Pentagone
 {
 View::View(QGraphicsItem* parent) : LayerView{parent}
 {
@@ -92,7 +92,7 @@ void View::paint_impl(QPainter* p) const
   }
 }
 
-void View::updateTriangle()
+void View::updatePentagone()
 {
   m_spl = tinyspline::BSpline{3, 2, m_spline.points.size(), TS_CLAMPED};
   ts_bspline_set_ctrlp(
@@ -116,7 +116,7 @@ void View::mousePressEvent(QGraphicsSceneMouseEvent* e)
   {
     // Delete
 
-    updateTriangle();
+    updatePentagone();
   }
 }
 
@@ -142,7 +142,7 @@ void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
     double angle_sup;
     int i;
 
-    double anglefixe = (2*PI)/3;
+    double anglefixe = (2*PI)/5;
     int cmpt_point = 0;
     int num_point = 2;
     new_dist = sqrt(pow(p.x()-0.5,2)+pow(p.y()-0.5,2));
@@ -153,7 +153,7 @@ void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
       angle_sup = -rotation;
     }
 
-    for(i=0;i<13;i++){
+    for(i=0;i<19;i++){
       if((i<mp) ||(i>mp+2)){
         m_spline.points[i]={cos((num_point-2)*anglefixe-angle_sup)*new_dist+0.5,
                             sin((num_point-2)*anglefixe-angle_sup)*new_dist+0.5};
@@ -166,7 +166,7 @@ void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
      }
 
 
-    updateTriangle();
+    updatePentagone();
     update();
   }
 }

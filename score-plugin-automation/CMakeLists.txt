@@ -32,6 +32,24 @@ set(HDRS
   "${CMAKE_CURRENT_SOURCE_DIR}/Pentagone/PentagoneMetadata.hpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/Pentagone/PentagoneExecution.hpp"
 
+  "${CMAKE_CURRENT_SOURCE_DIR}/Square/SquareModel.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Square/SquarePresenter.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Square/SquareView.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Square/SquareMetadata.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Square/SquareExecution.hpp"
+
+  "${CMAKE_CURRENT_SOURCE_DIR}/Rectangle/RectangleModel.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Rectangle/RectanglePresenter.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Rectangle/RectangleView.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Rectangle/RectangleMetadata.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Rectangle/RectangleExecution.hpp"
+
+  "${CMAKE_CURRENT_SOURCE_DIR}/Triangle/TriangleModel.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Triangle/TrianglePresenter.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Triangle/TriangleView.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Triangle/TriangleMetadata.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Triangle/TriangleExecution.hpp"
+
   "${CMAKE_CURRENT_SOURCE_DIR}/Metronome/MetronomeColors.hpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/Metronome/MetronomeModel.hpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/Metronome/MetronomePresenter.hpp"
@@ -73,6 +91,21 @@ set(SRCS
 "${CMAKE_CURRENT_SOURCE_DIR}/Pentagone/PentagonePresenter.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/Pentagone/PentagoneView.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/Pentagone/PentagoneExecution.cpp"
+
+"${CMAKE_CURRENT_SOURCE_DIR}/Square/SquareModel.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Square/SquarePresenter.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Square/SquareView.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Square/SquareExecution.cpp"
+
+"${CMAKE_CURRENT_SOURCE_DIR}/Rectangle/RectangleModel.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Rectangle/RectanglePresenter.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Rectangle/RectangleView.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Rectangle/RectangleExecution.cpp"
+
+"${CMAKE_CURRENT_SOURCE_DIR}/Triangle/TriangleModel.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Triangle/TrianglePresenter.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Triangle/TriangleView.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Triangle/TriangleExecution.cpp"
 
 "${CMAKE_CURRENT_SOURCE_DIR}/Metronome/MetronomeColors.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/Metronome/MetronomeModel.cpp"

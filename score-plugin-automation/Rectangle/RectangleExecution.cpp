@@ -1,34 +1,34 @@
 // This is an open source non-commercial project. Dear PVS-Studio, please check
 // it. PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
-#include "TriangleExecution.hpp"
+#include "RectangleExecution.hpp"
 
 #include <Process/ExecutionContext.hpp>
 #include <score/tools/Bind.hpp>
 
 #include <ossia/dataflow/nodes/spline.hpp>
-namespace Triangle
+namespace Rectangle
 {
 namespace RecreateOnPlay
 {
 using spline = ossia::nodes::spline;
 Component::Component(
-    ::Triangle::ProcessModel& element,
+    ::Rectangle::ProcessModel& element,
     const ::Execution::Context& ctx,
     const Id<score::Component>& id,
     QObject* parent)
     : ::Execution::
-          ProcessComponent_T<Triangle::ProcessModel, ossia::node_process>{
+          ProcessComponent_T<Rectangle::ProcessModel, ossia::node_process>{
               element,
               ctx,
               id,
-              "Executor::TriangleComponent",
+              "Executor::RectangleComponent",
               parent}
 {
   auto node = std::make_shared<spline>();
   this->node = node;
   m_ossia_process = std::make_shared<ossia::node_process>(node);
 
-  con(element, &Triangle::ProcessModel::splineChanged, this, [this] {
+  con(element, &Rectangle::ProcessModel::splineChanged, this, [this] {
     this->recompute();
   });
 

@@ -26,6 +26,9 @@
 #include <Metronome/MetronomeModel.hpp>
 #include <Spline/SplineModel.hpp>
 #include <Pentagone/PentagoneModel.hpp>
+#include <Square/SquareModel.hpp>
+#include <Rectangle/RectangleModel.hpp>
+#include <Triangle/TriangleModel.hpp>
 
 namespace Automation
 {
@@ -169,6 +172,104 @@ void ChangePentagoneAddress::serializeImpl(DataStreamInput& s) const
 }
 
 void ChangePentagoneAddress::deserializeImpl(DataStreamOutput& s)
+{
+  s >> m_path >> m_old >> m_new;
+}
+}
+
+
+namespace Square
+{
+ChangeSquareAddress::ChangeSquareAddress(
+    const ProcessModel& autom,
+    const State::AddressAccessor& newval)
+    : m_path{autom}, m_old{autom.address()}, m_new{newval}
+{
+}
+
+void ChangeSquareAddress::undo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_old);
+}
+
+void ChangeSquareAddress::redo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_new);
+}
+
+void ChangeSquareAddress::serializeImpl(DataStreamInput& s) const
+{
+  s << m_path << m_old << m_new;
+}
+
+void ChangeSquareAddress::deserializeImpl(DataStreamOutput& s)
+{
+  s >> m_path >> m_old >> m_new;
+}
+}
+
+
+namespace Rectangle
+{
+ChangeRectangleAddress::ChangeRectangleAddress(
+    const ProcessModel& autom,
+    const State::AddressAccessor& newval)
+    : m_path{autom}, m_old{autom.address()}, m_new{newval}
+{
+}
+
+void ChangeRectangleAddress::undo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_old);
+}
+
+void ChangeRectangleAddress::redo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_new);
+}
+
+void ChangeRectangleAddress::serializeImpl(DataStreamInput& s) const
+{
+  s << m_path << m_old << m_new;
+}
+
+void ChangeRectangleAddress::deserializeImpl(DataStreamOutput& s)
+{
+  s >> m_path >> m_old >> m_new;
+}
+}
+
+namespace Triangle
+{
+ChangeTriangleAddress::ChangeTriangleAddress(
+    const ProcessModel& autom,
+    const State::AddressAccessor& newval)
+    : m_path{autom}, m_old{autom.address()}, m_new{newval}
+{
+}
+
+void ChangeTriangleAddress::undo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_old);
+}
+
+void ChangeTriangleAddress::redo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_new);
+}
+
+void ChangeTriangleAddress::serializeImpl(DataStreamInput& s) const
+{
+  s << m_path << m_old << m_new;
+}
+
+void ChangeTriangleAddress::deserializeImpl(DataStreamOutput& s)
 {
   s >> m_path >> m_old >> m_new;
 }

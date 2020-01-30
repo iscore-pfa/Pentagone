@@ -27,7 +27,7 @@ ProcessModel::ProcessModel(
   outlet->type = Process::PortType::Message;
   //points p1 =  ({0., 0.});
 
-  m_spline.points.push_back({0., 0.});
+  //m_spline.points.push_back({0., 0.});
 
   //double x = 0.4;
   //double y = 0.075;

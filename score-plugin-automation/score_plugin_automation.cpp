@@ -41,6 +41,18 @@
 #include <Pentagone/PentagoneModel.hpp>
 #include <Pentagone/PentagonePresenter.hpp>
 #include <Pentagone/PentagoneView.hpp>
+#include <Square/SquareExecution.hpp>
+#include <Square/SquareModel.hpp>
+#include <Square/SquarePresenter.hpp>
+#include <Square/SquareView.hpp>
+#include <Rectangle/RectangleExecution.hpp>
+#include <Rectangle/RectangleModel.hpp>
+#include <Rectangle/RectanglePresenter.hpp>
+#include <Rectangle/RectangleView.hpp>
+#include <Triangle/TriangleExecution.hpp>
+#include <Triangle/TriangleModel.hpp>
+#include <Triangle/TrianglePresenter.hpp>
+#include <Triangle/TriangleView.hpp>
 #include <score_plugin_automation_commands_files.hpp>
 #include <wobjectimpl.h>
 W_OBJECT_IMPL(Automation::LayerPresenter)
@@ -111,6 +123,27 @@ using PentagoneLayerFactory = Process::
     LayerFactory_T<Pentagone::ProcessModel, Pentagone::Presenter, Pentagone::View>;
 }
 
+namespace Square
+{
+using SquareFactory = Process::ProcessFactory_T<Square::ProcessModel>;
+using SquareLayerFactory = Process::
+    LayerFactory_T<Square::ProcessModel, Square::Presenter, Square::View>;
+}
+
+namespace Rectangle
+{
+using RectangleFactory = Process::ProcessFactory_T<Rectangle::ProcessModel>;
+using RectangleLayerFactory = Process::
+    LayerFactory_T<Rectangle::ProcessModel, Rectangle::Presenter, Rectangle::View>;
+}
+
+namespace Triangle
+{
+using TriangleFactory = Process::ProcessFactory_T<Triangle::ProcessModel>;
+using TriangleLayerFactory = Process::
+    LayerFactory_T<Triangle::ProcessModel, Triangle::Presenter, Triangle::View>;
+}
+
 namespace Metronome
 {
 using MetronomeFactory = Process::ProcessFactory_T<Metronome::ProcessModel>;
@@ -137,12 +170,18 @@ score_plugin_automation::factories(
          Gradient::GradientFactory,
          Spline::SplineFactory,
          Pentagone::PentagoneFactory,
+         Square::SquareFactory,
+         Rectangle::RectangleFactory,
+         Triangle::TriangleFactory,
          Metronome::MetronomeFactory>,
       FW<Process::LayerFactory,
          Automation::AutomationLayerFactory,
          Gradient::GradientLayerFactory,
          Spline::SplineLayerFactory,
          Pentagone::PentagoneLayerFactory,
+         Square::SquareLayerFactory,
+         Rectangle::RectangleLayerFactory,
+         Triangle::TriangleLayerFactory,
          Metronome::MetronomeLayerFactory>,
       FW<Inspector::InspectorWidgetFactory,
          Automation::StateInspectorFactory,
@@ -151,6 +190,9 @@ score_plugin_automation::factories(
          Gradient::InspectorFactory,
          Spline::InspectorFactory,
          Pentagone::InspectorFactory,
+         Square::InspectorFactory,
+         Rectangle::InspectorFactory,
+         Triangle::InspectorFactory,
          Metronome::InspectorFactory>,
 
       FW<Execution::ProcessComponentFactory,
@@ -160,6 +202,9 @@ score_plugin_automation::factories(
          Gradient::RecreateOnPlay::ComponentFactory,
          Spline::RecreateOnPlay::ComponentFactory,
          Pentagone::RecreateOnPlay::ComponentFactory,
+         Square::RecreateOnPlay::ComponentFactory,
+         Rectangle::RecreateOnPlay::ComponentFactory,
+         Triangle::RecreateOnPlay::ComponentFactory,
          Metronome::RecreateOnPlay::ComponentFactory>>(ctx, key);
 }
 
@@ -170,6 +215,9 @@ score_plugin_automation::make_commands()
   using namespace Gradient;
   using namespace Spline;
   using namespace Pentagone;
+  using namespace Square;
+  using namespace Rectangle;
+  using namespace Triangle;
   using namespace Metronome;
   std::pair<const CommandGroupKey, CommandGeneratorMap> cmds{
       CommandFactoryName(), CommandGeneratorMap{}};

@@ -5,18 +5,18 @@
 
 #include <score/model/path/PathSerialization.hpp>
 
-#include <Triangle/TriangleModel.hpp>
+#include <Rectangle/RectangleModel.hpp>
 
-namespace Triangle
+namespace Rectangle
 {
-class ChangeTriangle : public score::Command
+class ChangeRectangle : public score::Command
 {
   SCORE_COMMAND_DECL(
       Automation::CommandFactoryName(),
-      ChangeTriangle,
-      "ChangeTriangle")
+      ChangeRectangle,
+      "ChangeRectangle")
 public:
-  ChangeTriangle(
+  ChangeRectangle(
       const ProcessModel& autom,
       const ossia::nodes::spline_data& newval)
       : m_path{autom}, m_old{autom.spline()}, m_new{newval}
@@ -26,11 +26,11 @@ public:
 public:
   void undo(const score::DocumentContext& ctx) const override
   {
-    m_path.find(ctx).setTriangle(m_old);
+    m_path.find(ctx).setRectangle(m_old);
   }
   void redo(const score::DocumentContext& ctx) const override
   {
-    m_path.find(ctx).setTriangle(m_new);
+    m_path.find(ctx).setRectangle(m_new);
   }
 
 protected:
@@ -53,8 +53,8 @@ class Presenter : public Process::LayerPresenter
 {
 public:
   explicit Presenter(
-      const Triangle::ProcessModel& model,
-      Triangle::View* view,
+      const Rectangle::ProcessModel& model,
+      Rectangle::View* view,
       const Process::ProcessPresenterContext& ctx,
       QObject* parent);
 
@@ -68,11 +68,11 @@ public:
 
   void parentGeometryChanged() override;
 
-  const Triangle::ProcessModel& model() const override;
+  const Rectangle::ProcessModel& model() const override;
   const Id<Process::ProcessModel>& modelId() const override;
 
 private:
-  const Triangle::ProcessModel& m_layer;
+  const Rectangle::ProcessModel& m_layer;
   View* m_view{};
   ZoomRatio m_zoomRatio{};
 };

@@ -43,6 +43,37 @@ class InspectorFactory final
 };
 }
 
+namespace Square
+{
+class InspectorFactory final
+    : public Process::
+          InspectorWidgetDelegateFactory_T<ProcessModel, InspectorWidget>
+{
+  SCORE_CONCRETE("90ae5381-0dcb-41f9-a630-b260c67d82cc")
+};
+}
+
+namespace Rectangle
+{
+class InspectorFactory final
+    : public Process::
+          InspectorWidgetDelegateFactory_T<ProcessModel, InspectorWidget>
+{
+  SCORE_CONCRETE("c393c4d4-d916-484f-aa4c-ab7dfd1e83a3")
+};
+}
+
+
+namespace Triangle
+{
+class InspectorFactory final
+    : public Process::
+          InspectorWidgetDelegateFactory_T<ProcessModel, InspectorWidget>
+{
+  SCORE_CONCRETE("a3ac72db-6c44-4508-a4ac-4da6f8b0cfa3")
+};
+}
+
 namespace Metronome
 {
 class InspectorFactory final

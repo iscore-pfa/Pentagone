@@ -3,25 +3,25 @@
 
 #include <ossia/dataflow/node_process.hpp>
 
-#include <Triangle/TriangleModel.hpp>
+#include <Square/SquareModel.hpp>
 
 namespace Device
 {
 class DeviceList;
 }
 
-namespace Triangle
+namespace Square
 {
 namespace RecreateOnPlay
 {
 class Component
     : public ::Execution::
-          ProcessComponent_T<Triangle::ProcessModel, ossia::node_process>
+          ProcessComponent_T<Square::ProcessModel, ossia::node_process>
 {
   COMPONENT_METADATA("6b5b4706-6ae7-46ab-b06a-bece7e03e6f7")
 public:
   Component(
-      Triangle::ProcessModel& element,
+      Square::ProcessModel& element,
       const ::Execution::Context& ctx,
       const Id<score::Component>& id,
       QObject* parent);
@@ -36,4 +36,4 @@ using ComponentFactory = ::Execution::ProcessComponentFactory_T<Component>;
 
 SCORE_CONCRETE_COMPONENT_FACTORY(
     Execution::ProcessComponentFactory,
-    Triangle::RecreateOnPlay::ComponentFactory)
+    Square::RecreateOnPlay::ComponentFactory)

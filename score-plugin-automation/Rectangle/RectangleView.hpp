@@ -3,9 +3,9 @@
 
 #include <ossia/editor/automation/tinysplinecpp.h>
 
-#include <Triangle/TriangleModel.hpp>
+#include <Rectangle/RectangleModel.hpp>
 #include <verdigris>
-namespace Triangle
+namespace Rectangle
 {
 class View : public Process::LayerView
 {
@@ -13,11 +13,11 @@ class View : public Process::LayerView
 public:
   View(QGraphicsItem* parent);
 
-  void setTriangle(ossia::nodes::spline_data d)
+  void setRectangle(ossia::nodes::spline_data d)
   {
     if (d != m_spline)
       m_spline = std::move(d);
-    updateTriangle();
+    updateRectangle();
     update();
   }
 
@@ -28,7 +28,7 @@ public:
 
 private:
   void paint_impl(QPainter*) const override;
-  void updateTriangle();
+  void updateRectangle();
 
   void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
   void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;

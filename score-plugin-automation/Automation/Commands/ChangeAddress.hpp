@@ -100,6 +100,91 @@ private:
 };
 }
 
+namespace Square
+{
+class ProcessModel;
+class ChangeSquareAddress final : public score::Command
+{
+  SCORE_COMMAND_DECL(
+      Automation::CommandFactoryName(),
+      ChangeSquareAddress,
+      "ChangeSquareAddress")
+public:
+  ChangeSquareAddress(
+      const ProcessModel& autom,
+      const State::AddressAccessor& newval);
+
+public:
+  void undo(const score::DocumentContext& ctx) const override;
+  void redo(const score::DocumentContext& ctx) const override;
+
+protected:
+  void serializeImpl(DataStreamInput&) const override;
+  void deserializeImpl(DataStreamOutput&) override;
+
+private:
+  Path<ProcessModel> m_path;
+  State::AddressAccessor m_old, m_new;
+};
+}
+
+namespace Rectangle
+{
+class ProcessModel;
+class ChangeRectangleAddress final : public score::Command
+{
+  SCORE_COMMAND_DECL(
+      Automation::CommandFactoryName(),
+      ChangeRectangleAddress,
+      "ChangeRectangleAddress")
+public:
+  ChangeRectangleAddress(
+      const ProcessModel& autom,
+      const State::AddressAccessor& newval);
+
+public:
+  void undo(const score::DocumentContext& ctx) const override;
+  void redo(const score::DocumentContext& ctx) const override;
+
+protected:
+  void serializeImpl(DataStreamInput&) const override;
+  void deserializeImpl(DataStreamOutput&) override;
+
+private:
+  Path<ProcessModel> m_path;
+  State::AddressAccessor m_old, m_new;
+};
+}
+
+namespace Triangle
+{
+class ProcessModel;
+class ChangeTriangleAddress final : public score::Command
+{
+  SCORE_COMMAND_DECL(
+      Automation::CommandFactoryName(),
+      ChangeTriangleAddress,
+      "ChangeTriangleAddress")
+public:
+  ChangeTriangleAddress(
+      const ProcessModel& autom,
+      const State::AddressAccessor& newval);
+
+public:
+  void undo(const score::DocumentContext& ctx) const override;
+  void redo(const score::DocumentContext& ctx) const override;
+
+protected:
+  void serializeImpl(DataStreamInput&) const override;
+  void deserializeImpl(DataStreamOutput&) override;
+
+private:
+  Path<ProcessModel> m_path;
+  State::AddressAccessor m_old, m_new;
+};
+}
+
+
 namespace Metronome
 {
 class ProcessModel;
