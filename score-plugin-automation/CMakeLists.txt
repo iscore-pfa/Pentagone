@@ -26,11 +26,23 @@ set(HDRS
   "${CMAKE_CURRENT_SOURCE_DIR}/Spline/SplineMetadata.hpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/Spline/SplineExecution.hpp"
 
+  "${CMAKE_CURRENT_SOURCE_DIR}/Polygon/PolygonModel.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Polygon/PolygonPresenter.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Polygon/PolygonView.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Polygon/PolygonMetadata.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Polygon/PolygonExecution.hpp"
+
   "${CMAKE_CURRENT_SOURCE_DIR}/Pentagone/PentagoneModel.hpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/Pentagone/PentagonePresenter.hpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/Pentagone/PentagoneView.hpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/Pentagone/PentagoneMetadata.hpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/Pentagone/PentagoneExecution.hpp"
+
+  "${CMAKE_CURRENT_SOURCE_DIR}/Hexagon/HexagonModel.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Hexagon/HexagonPresenter.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Hexagon/HexagonView.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Hexagon/HexagonMetadata.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Hexagon/HexagonExecution.hpp"
 
   "${CMAKE_CURRENT_SOURCE_DIR}/Square/SquareModel.hpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/Square/SquarePresenter.hpp"
@@ -87,10 +99,20 @@ set(SRCS
 "${CMAKE_CURRENT_SOURCE_DIR}/Spline/SplineView.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/Spline/SplineExecution.cpp"
 
+"${CMAKE_CURRENT_SOURCE_DIR}/Polygon/PolygonModel.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Polygon/PolygonPresenter.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Polygon/PolygonView.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Polygon/PolygonExecution.cpp"
+
 "${CMAKE_CURRENT_SOURCE_DIR}/Pentagone/PentagoneModel.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/Pentagone/PentagonePresenter.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/Pentagone/PentagoneView.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/Pentagone/PentagoneExecution.cpp"
+
+"${CMAKE_CURRENT_SOURCE_DIR}/Hexagon/HexagonModel.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Hexagon/HexagonPresenter.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Hexagon/HexagonView.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Hexagon/HexagonExecution.cpp"
 
 "${CMAKE_CURRENT_SOURCE_DIR}/Square/SquareModel.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/Square/SquarePresenter.cpp"

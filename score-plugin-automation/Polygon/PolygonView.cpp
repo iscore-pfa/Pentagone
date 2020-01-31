@@ -4,7 +4,7 @@
 
 #include <QPainter>
 
-#include <Rectangle/RectangleView.hpp>
+#include <Polygon/PolygonView.hpp>
 #include <cmath>
 // Disclaimer:
 // Part of the code comes from splineeditor.cpp from
@@ -12,8 +12,8 @@
 // Copyright (C) 2016 The Qt Company Ltd.
 // https://github.com/qt/qtdeclarative/blob/dev/tools/qmleasing/splineeditor.cpp
 #include <wobjectimpl.h>
-W_OBJECT_IMPL(Rectangle::View)
-namespace Rectangle
+W_OBJECT_IMPL(Polygon::View)
+namespace Polygon
 {
 View::View(QGraphicsItem* parent) : LayerView{parent}
 {
@@ -76,11 +76,7 @@ void View::paint_impl(QPainter* p) const
     painter.drawLine(fp, p);
 
       if (i != m_clicked)
-        if(i==0||i ==1||i==2||i==16||i ==17||i==18){
-          painter.setBrush(QColor(170, 220, 20));
-        } else {
-          painter.setBrush(QColor(170, 20, 20));
-      }
+        painter.setBrush(QColor(170, 220, 20));
       else
         painter.setBrush(QColor(170, 220, 220));
 
@@ -92,7 +88,7 @@ void View::paint_impl(QPainter* p) const
   }
 }
 
-void View::updateRectangle()
+void View::updatePolygon()
 {
   m_spl = tinyspline::BSpline{3, 2, m_spline.points.size(), TS_CLAMPED};
   ts_bspline_set_ctrlp(
@@ -116,7 +112,7 @@ void View::mousePressEvent(QGraphicsSceneMouseEvent* e)
   {
     // Delete
 
-    updateRectangle();
+    updatePolygon();
   }
 }
 
@@ -127,53 +123,13 @@ void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
     return;
   const auto mp = *m_clicked;
   const auto N = m_spline.points.size();
-
-  if(mp==0 ||mp==1|| mp==2)
+  if (mp < N)
   {
     m_spline.points[mp] = p;
     m_spline.points[mp+1] = p;
     m_spline.points[mp+2] = p;
 
-    double distance;
-    double new_dist;
-    double new_scale;
-    double rotation;
-    double angle_sup;
-    int i;
-
-    double anglefixe = (2*PI)/4;
-    int cmpt_point = 0;
-    int num_point = 2;
-    new_dist = sqrt(pow(p.x()-0.5,2)+pow(p.y()-0.5,2));
-    rotation = acos((p.x()-0.5)/new_dist);
-    if(p.y()<0.5){
-      angle_sup = rotation;
-    }else{
-      angle_sup = -rotation;
-    }
-/*
-    m_spline.points[0]={cos(angle_sup)*new_dist+0.5,sin(angle_sup)*new_dist+0.5};
-    m_spline.points[1]={cos(angle_sup)*new_dist+0.5,sin(angle_sup)*new_dist+0.5};
-    m_spline.points[2]={cos(angle_sup)*new_dist+0.5,sin(angle_sup)*new_dist+0.5};
-*/
-    m_spline.points[3]={sin(anglefixe-angle_sup)*new_dist+0.5,cos(anglefixe-angle_sup)*new_dist+0.5};
-    m_spline.points[4]={sin(anglefixe-angle_sup)*new_dist+0.5,cos(anglefixe-angle_sup)*new_dist+0.5};
-    m_spline.points[5]={sin(anglefixe-angle_sup)*new_dist+0.5,cos(anglefixe-angle_sup)*new_dist+0.5};
-
-    m_spline.points[6]={cos(2*anglefixe-angle_sup)*new_dist+0.5,sin(2*anglefixe-angle_sup)*new_dist+0.5};
-    m_spline.points[7]={cos(2*anglefixe-angle_sup)*new_dist+0.5,sin(2*anglefixe-angle_sup)*new_dist+0.5};
-    m_spline.points[8]={cos(2*anglefixe-angle_sup)*new_dist+0.5,sin(2*anglefixe-angle_sup)*new_dist+0.5};
-
-    m_spline.points[9]={sin(3*anglefixe-angle_sup)*new_dist+0.5,cos(3*anglefixe-angle_sup)*new_dist+0.5};
-    m_spline.points[10]={sin(3*anglefixe-angle_sup)*new_dist+0.5,cos(3*anglefixe-angle_sup)*new_dist+0.5};
-    m_spline.points[11]={sin(3*anglefixe-angle_sup)*new_dist+0.5,cos(3*anglefixe-angle_sup)*new_dist+0.5};
-
-    m_spline.points[12]={cos(4*anglefixe-angle_sup)*new_dist+0.5,sin(4*anglefixe-angle_sup)*new_dist+0.5};
-    m_spline.points[13]={cos(4*anglefixe-angle_sup)*new_dist+0.5,sin(4*anglefixe-angle_sup)*new_dist+0.5};
-    m_spline.points[14]={cos(4*anglefixe-angle_sup)*new_dist+0.5,sin(4*anglefixe-angle_sup)*new_dist+0.5};
-
-
-    updateRectangle();
+    updatePolygon();
     update();
   }
 }
@@ -186,6 +142,31 @@ void View::mouseReleaseEvent(QGraphicsSceneMouseEvent* e)
     m_clicked = ossia::none;
   }
   e->accept();
+}
+
+void View::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
+{
+  const auto newPos = mapFromCanvas(event->pos());
+  std::size_t splitIndex = 0;
+  const std::size_t N = m_spline.points.size();
+  for (std::size_t i = 0; i < N - 1; ++i)
+  {
+    if (m_spline.points[i].x() <= newPos.x())
+    {
+      splitIndex = i;
+    }
+    else
+    {
+      break;
+    }
+  }
+  m_spline.points.insert(m_spline.points.begin() + splitIndex + 1, newPos);
+  m_spline.points.insert(m_spline.points.begin() + splitIndex + 1, newPos);
+  m_spline.points.insert(m_spline.points.begin() + splitIndex + 1, newPos);
+
+  updatePolygon();
+  changed();
+  update();
 }
 
 optional<std::size_t> View::findControlPoint(QPointF point)

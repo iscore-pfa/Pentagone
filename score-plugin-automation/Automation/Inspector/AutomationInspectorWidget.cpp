@@ -288,6 +288,83 @@ void InspectorWidget::on_tweenChanged()
 }
 }
 
+namespace Polygon
+{
+InspectorWidget::InspectorWidget(
+    const ProcessModel& automationModel,
+    const score::DocumentContext& doc,
+    QWidget* parent)
+    : InspectorWidgetDelegate_T{automationModel, parent}
+    , m_dispatcher{doc.commandStack}
+{
+  using namespace Device;
+
+  setObjectName("PolygonInspectorWidget");
+  setParent(parent);
+
+  auto vlay = new QFormLayout;
+  vlay->setSpacing(2);
+  vlay->setMargin(2);
+  vlay->setContentsMargins(0, 0, 0, 0);
+
+  // Address
+  m_lineEdit = new AddressAccessorEditWidget{doc, this};
+
+  m_lineEdit->setAddress(process().address());
+  con(process(),
+      &ProcessModel::addressChanged,
+      m_lineEdit,
+      &AddressAccessorEditWidget::setAddress);
+
+  connect(
+      m_lineEdit,
+      &AddressAccessorEditWidget::addressChanged,
+      this,
+      &InspectorWidget::on_addressChange);
+
+  vlay->addRow(tr("Address"), m_lineEdit);
+
+  /*
+  // Tween
+  m_tween = new QCheckBox{this};
+  vlay->addRow(tr("Tween"), m_tween);
+  m_tween->setChecked(process().tween());
+  con(process(), &ProcessModel::tweenChanged, m_tween, &QCheckBox::setChecked);
+  connect(
+      m_tween, &QCheckBox::toggled, this, &InspectorWidget::on_tweenChanged);
+
+  */
+  this->setLayout(vlay);
+}
+
+void InspectorWidget::on_addressChange(
+    const Device::FullAddressAccessorSettings& newAddr)
+{
+  // Various checks
+  if (newAddr.address == process().address())
+    return;
+
+  if (newAddr.address.address.path.isEmpty())
+    return;
+
+  auto cmd = new ChangePolygonAddress{process(), newAddr.address};
+
+  m_dispatcher.submit(cmd);
+}
+
+void InspectorWidget::on_tweenChanged()
+{
+  bool newVal = m_tween->checkState();
+  if (newVal != process().tween())
+  {
+    // auto cmd = new SetTween{process(), newVal};
+
+    // m_dispatcher.submit(cmd);
+  }
+}
+}
+
+
 namespace Pentagone
 {
 InspectorWidget::InspectorWidget(
@@ -348,6 +425,82 @@ void InspectorWidget::on_addressChange(
     return;
 
   auto cmd = new ChangePentagoneAddress{process(), newAddr.address};
+
+  m_dispatcher.submit(cmd);
+}
+
+void InspectorWidget::on_tweenChanged()
+{
+  bool newVal = m_tween->checkState();
+  if (newVal != process().tween())
+  {
+    // auto cmd = new SetTween{process(), newVal};
+
+    // m_dispatcher.submit(cmd);
+  }
+}
+}
+
+namespace Hexagon
+{
+InspectorWidget::InspectorWidget(
+    const ProcessModel& automationModel,
+    const score::DocumentContext& doc,
+    QWidget* parent)
+    : InspectorWidgetDelegate_T{automationModel, parent}
+    , m_dispatcher{doc.commandStack}
+{
+  using namespace Device;
+
+  setObjectName("HexagonInspectorWidget");
+  setParent(parent);
+
+  auto vlay = new QFormLayout;
+  vlay->setSpacing(2);
+  vlay->setMargin(2);
+  vlay->setContentsMargins(0, 0, 0, 0);
+
+  // Address
+  m_lineEdit = new AddressAccessorEditWidget{doc, this};
+
+  m_lineEdit->setAddress(process().address());
+  con(process(),
+      &ProcessModel::addressChanged,
+      m_lineEdit,
+      &AddressAccessorEditWidget::setAddress);
+
+  connect(
+      m_lineEdit,
+      &AddressAccessorEditWidget::addressChanged,
+      this,
+      &InspectorWidget::on_addressChange);
+
+  vlay->addRow(tr("Address"), m_lineEdit);
+
+  /*
+  // Tween
+  m_tween = new QCheckBox{this};
+  vlay->addRow(tr("Tween"), m_tween);
+  m_tween->setChecked(process().tween());
+  con(process(), &ProcessModel::tweenChanged, m_tween, &QCheckBox::setChecked);
+  connect(
+      m_tween, &QCheckBox::toggled, this, &InspectorWidget::on_tweenChanged);
+
+  */
+  this->setLayout(vlay);
+}
+
+void InspectorWidget::on_addressChange(
+    const Device::FullAddressAccessorSettings& newAddr)
+{
+  // Various checks
+  if (newAddr.address == process().address())
+    return;
+
+  if (newAddr.address.address.path.isEmpty())
+    return;
+
+  auto cmd = new ChangeHexagonAddress{process(), newAddr.address};
 
   m_dispatcher.submit(cmd);
 }

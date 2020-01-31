@@ -33,6 +33,16 @@ class InspectorFactory final
 };
 }
 
+namespace Polygon
+{
+class InspectorFactory final
+    : public Process::
+          InspectorWidgetDelegateFactory_T<ProcessModel, InspectorWidget>
+{
+  SCORE_CONCRETE("f83e7e67-7b0d-48b2-8584-d17349cdb0d3")
+};
+}
+
 namespace Pentagone
 {
 class InspectorFactory final
@@ -40,6 +50,16 @@ class InspectorFactory final
           InspectorWidgetDelegateFactory_T<ProcessModel, InspectorWidget>
 {
   SCORE_CONCRETE("fe635d49-cdb9-471c-88b2-80d4d45712f9")
+};
+}
+
+namespace Hexagon
+{
+class InspectorFactory final
+    : public Process::
+          InspectorWidgetDelegateFactory_T<ProcessModel, InspectorWidget>
+{
+  SCORE_CONCRETE("5f71677d-bf61-4190-ae41-4a352ed1b5ed")
 };
 }
 

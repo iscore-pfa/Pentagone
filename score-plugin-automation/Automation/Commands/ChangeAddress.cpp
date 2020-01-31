@@ -25,7 +25,9 @@
 #include <Color/GradientModel.hpp>
 #include <Metronome/MetronomeModel.hpp>
 #include <Spline/SplineModel.hpp>
+#include <Polygon/PolygonModel.hpp>
 #include <Pentagone/PentagoneModel.hpp>
+#include <Hexagon/HexagonModel.hpp>
 #include <Square/SquareModel.hpp>
 #include <Rectangle/RectangleModel.hpp>
 #include <Triangle/TriangleModel.hpp>
@@ -145,6 +147,38 @@ void ChangeSplineAddress::deserializeImpl(DataStreamOutput& s)
 }
 }
 
+namespace Polygon
+{
+ChangePolygonAddress::ChangePolygonAddress(
+    const ProcessModel& autom,
+    const State::AddressAccessor& newval)
+    : m_path{autom}, m_old{autom.address()}, m_new{newval}
+{
+}
+
+void ChangePolygonAddress::undo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_old);
+}
+
+void ChangePolygonAddress::redo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_new);
+}
+
+void ChangePolygonAddress::serializeImpl(DataStreamInput& s) const
+{
+  s << m_path << m_old << m_new;
+}
+
+void ChangePolygonAddress::deserializeImpl(DataStreamOutput& s)
+{
+  s >> m_path >> m_old >> m_new;
+}
+}
+
 namespace Pentagone
 {
 ChangePentagoneAddress::ChangePentagoneAddress(
@@ -177,6 +211,37 @@ void ChangePentagoneAddress::deserializeImpl(DataStreamOutput& s)
 }
 }
 
+namespace Hexagon
+{
+ChangeHexagonAddress::ChangeHexagonAddress(
+    const ProcessModel& autom,
+    const State::AddressAccessor& newval)
+    : m_path{autom}, m_old{autom.address()}, m_new{newval}
+{
+}
+
+void ChangeHexagonAddress::undo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_old);
+}
+
+void ChangeHexagonAddress::redo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_new);
+}
+
+void ChangeHexagonAddress::serializeImpl(DataStreamInput& s) const
+{
+  s << m_path << m_old << m_new;
+}
+
+void ChangeHexagonAddress::deserializeImpl(DataStreamOutput& s)
+{
+  s >> m_path >> m_old >> m_new;
+}
+}
 
 namespace Square
 {

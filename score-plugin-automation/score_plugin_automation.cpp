@@ -37,10 +37,18 @@
 #include <Spline/SplineModel.hpp>
 #include <Spline/SplinePresenter.hpp>
 #include <Spline/SplineView.hpp>
+#include <Polygon/PolygonExecution.hpp>
+#include <Polygon/PolygonModel.hpp>
+#include <Polygon/PolygonPresenter.hpp>
+#include <Polygon/PolygonView.hpp>
 #include <Pentagone/PentagoneExecution.hpp>
 #include <Pentagone/PentagoneModel.hpp>
 #include <Pentagone/PentagonePresenter.hpp>
 #include <Pentagone/PentagoneView.hpp>
+#include <Hexagon/HexagonExecution.hpp>
+#include <Hexagon/HexagonModel.hpp>
+#include <Hexagon/HexagonPresenter.hpp>
+#include <Hexagon/HexagonView.hpp>
 #include <Square/SquareExecution.hpp>
 #include <Square/SquareModel.hpp>
 #include <Square/SquarePresenter.hpp>
@@ -116,11 +124,25 @@ using SplineLayerFactory = Process::
     LayerFactory_T<Spline::ProcessModel, Spline::Presenter, Spline::View>;
 }
 
+namespace Polygon
+{
+using PolygonFactory = Process::ProcessFactory_T<Polygon::ProcessModel>;
+using PolygonLayerFactory = Process::
+    LayerFactory_T<Polygon::ProcessModel, Polygon::Presenter, Polygon::View>;
+}
+
 namespace Pentagone
 {
 using PentagoneFactory = Process::ProcessFactory_T<Pentagone::ProcessModel>;
 using PentagoneLayerFactory = Process::
     LayerFactory_T<Pentagone::ProcessModel, Pentagone::Presenter, Pentagone::View>;
+}
+
+namespace Hexagon
+{
+using HexagonFactory = Process::ProcessFactory_T<Hexagon::ProcessModel>;
+using HexagonLayerFactory = Process::
+    LayerFactory_T<Hexagon::ProcessModel, Hexagon::Presenter, Hexagon::View>;
 }
 
 namespace Square
@@ -169,7 +191,9 @@ score_plugin_automation::factories(
          Automation::AutomationFactory,
          Gradient::GradientFactory,
          Spline::SplineFactory,
+         Polygon::PolygonFactory,
          Pentagone::PentagoneFactory,
+         Hexagon::HexagonFactory,
          Square::SquareFactory,
          Rectangle::RectangleFactory,
          Triangle::TriangleFactory,
@@ -178,7 +202,9 @@ score_plugin_automation::factories(
          Automation::AutomationLayerFactory,
          Gradient::GradientLayerFactory,
          Spline::SplineLayerFactory,
+         Polygon::PolygonLayerFactory,
          Pentagone::PentagoneLayerFactory,
+         Hexagon::HexagonLayerFactory,
          Square::SquareLayerFactory,
          Rectangle::RectangleLayerFactory,
          Triangle::TriangleLayerFactory,
@@ -189,7 +215,9 @@ score_plugin_automation::factories(
          Automation::InspectorFactory,
          Gradient::InspectorFactory,
          Spline::InspectorFactory,
+         Polygon::InspectorFactory,
          Pentagone::InspectorFactory,
+         Hexagon::InspectorFactory,
          Square::InspectorFactory,
          Rectangle::InspectorFactory,
          Triangle::InspectorFactory,
@@ -201,7 +229,9 @@ score_plugin_automation::factories(
          Automation::RecreateOnPlay::ComponentFactory,
          Gradient::RecreateOnPlay::ComponentFactory,
          Spline::RecreateOnPlay::ComponentFactory,
+         Polygon::RecreateOnPlay::ComponentFactory,
          Pentagone::RecreateOnPlay::ComponentFactory,
+         Hexagon::RecreateOnPlay::ComponentFactory,
          Square::RecreateOnPlay::ComponentFactory,
          Rectangle::RecreateOnPlay::ComponentFactory,
          Triangle::RecreateOnPlay::ComponentFactory,
@@ -214,7 +244,9 @@ score_plugin_automation::make_commands()
   using namespace Automation;
   using namespace Gradient;
   using namespace Spline;
+  using namespace Polygon;
   using namespace Pentagone;
+  using namespace Hexagon;
   using namespace Square;
   using namespace Rectangle;
   using namespace Triangle;

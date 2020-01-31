@@ -72,6 +72,34 @@ private:
 };
 }
 
+namespace Polygon
+{
+class ProcessModel;
+class ChangePolygonAddress final : public score::Command
+{
+  SCORE_COMMAND_DECL(
+      Automation::CommandFactoryName(),
+      ChangePolygonAddress,
+      "ChangePolygonAddress")
+public:
+  ChangePolygonAddress(
+      const ProcessModel& autom,
+      const State::AddressAccessor& newval);
+
+public:
+  void undo(const score::DocumentContext& ctx) const override;
+  void redo(const score::DocumentContext& ctx) const override;
+
+protected:
+  void serializeImpl(DataStreamInput&) const override;
+  void deserializeImpl(DataStreamOutput&) override;
+
+private:
+  Path<ProcessModel> m_path;
+  State::AddressAccessor m_old, m_new;
+};
+}
+
 namespace Pentagone
 {
 class ProcessModel;
@@ -83,6 +111,34 @@ class ChangePentagoneAddress final : public score::Command
       "ChangePentagoneAddress")
 public:
   ChangePentagoneAddress(
+      const ProcessModel& autom,
+      const State::AddressAccessor& newval);
+
+public:
+  void undo(const score::DocumentContext& ctx) const override;
+  void redo(const score::DocumentContext& ctx) const override;
+
+protected:
+  void serializeImpl(DataStreamInput&) const override;
+  void deserializeImpl(DataStreamOutput&) override;
+
+private:
+  Path<ProcessModel> m_path;
+  State::AddressAccessor m_old, m_new;
+};
+}
+
+namespace Hexagon
+{
+class ProcessModel;
+class ChangeHexagonAddress final : public score::Command
+{
+  SCORE_COMMAND_DECL(
+      Automation::CommandFactoryName(),
+      ChangeHexagonAddress,
+      "ChangeHexagonAddress")
+public:
+  ChangeHexagonAddress(
       const ProcessModel& autom,
       const State::AddressAccessor& newval);
 
