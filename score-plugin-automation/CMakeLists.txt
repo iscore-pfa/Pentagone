@@ -50,6 +50,24 @@ set(HDRS
   "${CMAKE_CURRENT_SOURCE_DIR}/Square/SquareMetadata.hpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/Square/SquareExecution.hpp"
 
+  "${CMAKE_CURRENT_SOURCE_DIR}/Circle/CircleModel.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Circle/CirclePresenter.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Circle/CircleView.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Circle/CircleMetadata.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Circle/CircleExecution.hpp"
+
+  "${CMAKE_CURRENT_SOURCE_DIR}/Infinite/InfiniteModel.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Infinite/InfinitePresenter.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Infinite/InfiniteView.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Infinite/InfiniteMetadata.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Infinite/InfiniteExecution.hpp"
+
+  "${CMAKE_CURRENT_SOURCE_DIR}/Heart/HeartModel.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Heart/HeartPresenter.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Heart/HeartView.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Heart/HeartMetadata.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/Heart/HeartExecution.hpp"
+
   "${CMAKE_CURRENT_SOURCE_DIR}/Rectangle/RectangleModel.hpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/Rectangle/RectanglePresenter.hpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/Rectangle/RectangleView.hpp"
@@ -118,6 +136,21 @@ set(SRCS
 "${CMAKE_CURRENT_SOURCE_DIR}/Square/SquarePresenter.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/Square/SquareView.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/Square/SquareExecution.cpp"
+
+"${CMAKE_CURRENT_SOURCE_DIR}/Circle/CircleModel.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Circle/CirclePresenter.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Circle/CircleView.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Circle/CircleExecution.cpp"
+
+"${CMAKE_CURRENT_SOURCE_DIR}/Infinite/InfiniteModel.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Infinite/InfinitePresenter.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Infinite/InfiniteView.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Infinite/InfiniteExecution.cpp"
+
+"${CMAKE_CURRENT_SOURCE_DIR}/Heart/HeartModel.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Heart/HeartPresenter.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Heart/HeartView.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Heart/HeartExecution.cpp"
 
 "${CMAKE_CURRENT_SOURCE_DIR}/Rectangle/RectangleModel.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/Rectangle/RectanglePresenter.cpp"

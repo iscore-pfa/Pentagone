@@ -73,6 +73,36 @@ class InspectorFactory final
 };
 }
 
+namespace Circle
+{
+class InspectorFactory final
+    : public Process::
+          InspectorWidgetDelegateFactory_T<ProcessModel, InspectorWidget>
+{
+  SCORE_CONCRETE("2b8e7877-897e-4bd7-9c5a-1eca43919256")
+};
+}
+
+namespace Infinite
+{
+class InspectorFactory final
+    : public Process::
+          InspectorWidgetDelegateFactory_T<ProcessModel, InspectorWidget>
+{
+  SCORE_CONCRETE("44a5e912-ea55-48cb-87b8-5efe02b487d8")
+};
+}
+
+namespace Heart
+{
+class InspectorFactory final
+    : public Process::
+          InspectorWidgetDelegateFactory_T<ProcessModel, InspectorWidget>
+{
+  SCORE_CONCRETE("0b48f52e-6115-4424-bb35-16c76d72c785")
+};
+}
+
 namespace Rectangle
 {
 class InspectorFactory final

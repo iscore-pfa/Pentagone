@@ -12,6 +12,9 @@
 #include <Pentagone/PentagoneModel.hpp>
 #include <Hexagon/HexagonModel.hpp>
 #include <Square/SquareModel.hpp>
+#include <Circle/CircleModel.hpp>
+#include <Infinite/InfiniteModel.hpp>
+#include <Heart/HeartModel.hpp>
 #include <Rectangle/RectangleModel.hpp>
 #include <Triangle/TriangleModel.hpp>
 
@@ -202,6 +205,74 @@ private:
 };
 }
 
+namespace Circle
+{
+class ProcessModel;
+class InspectorWidget final
+    : public Process::InspectorWidgetDelegate_T<Circle::ProcessModel>
+{
+public:
+  explicit InspectorWidget(
+      const ProcessModel& object,
+      const score::DocumentContext& context,
+      QWidget* parent);
+
+private:
+  void on_addressChange(const Device::FullAddressAccessorSettings& newText);
+  void on_tweenChanged();
+
+  Device::AddressAccessorEditWidget* m_lineEdit{};
+  QCheckBox* m_tween{};
+
+  CommandDispatcher<> m_dispatcher;
+};
+}
+
+namespace Infinite
+{
+class ProcessModel;
+class InspectorWidget final
+    : public Process::InspectorWidgetDelegate_T<Infinite::ProcessModel>
+{
+public:
+  explicit InspectorWidget(
+      const ProcessModel& object,
+      const score::DocumentContext& context,
+      QWidget* parent);
+
+private:
+  void on_addressChange(const Device::FullAddressAccessorSettings& newText);
+  void on_tweenChanged();
+
+  Device::AddressAccessorEditWidget* m_lineEdit{};
+  QCheckBox* m_tween{};
+
+  CommandDispatcher<> m_dispatcher;
+};
+}
+
+namespace Heart
+{
+class ProcessModel;
+class InspectorWidget final
+    : public Process::InspectorWidgetDelegate_T<Heart::ProcessModel>
+{
+public:
+  explicit InspectorWidget(
+      const ProcessModel& object,
+      const score::DocumentContext& context,
+      QWidget* parent);
+
+private:
+  void on_addressChange(const Device::FullAddressAccessorSettings& newText);
+  void on_tweenChanged();
+
+  Device::AddressAccessorEditWidget* m_lineEdit{};
+  QCheckBox* m_tween{};
+
+  CommandDispatcher<> m_dispatcher;
+};
+}
 
 namespace Rectangle
 {

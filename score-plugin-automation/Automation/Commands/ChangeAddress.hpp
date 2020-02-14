@@ -184,6 +184,92 @@ private:
 };
 }
 
+
+namespace Circle
+{
+class ProcessModel;
+class ChangeCircleAddress final : public score::Command
+{
+  SCORE_COMMAND_DECL(
+      Automation::CommandFactoryName(),
+      ChangeCircleAddress,
+      "ChangeCircleAddress")
+public:
+  ChangeCircleAddress(
+      const ProcessModel& autom,
+      const State::AddressAccessor& newval);
+
+public:
+  void undo(const score::DocumentContext& ctx) const override;
+  void redo(const score::DocumentContext& ctx) const override;
+
+protected:
+  void serializeImpl(DataStreamInput&) const override;
+  void deserializeImpl(DataStreamOutput&) override;
+
+private:
+  Path<ProcessModel> m_path;
+  State::AddressAccessor m_old, m_new;
+};
+}
+
+namespace Infinite
+{
+class ProcessModel;
+class ChangeInfiniteAddress final : public score::Command
+{
+  SCORE_COMMAND_DECL(
+      Automation::CommandFactoryName(),
+      ChangeInfiniteAddress,
+      "ChangeInfiniteAddress")
+public:
+  ChangeInfiniteAddress(
+      const ProcessModel& autom,
+      const State::AddressAccessor& newval);
+
+public:
+  void undo(const score::DocumentContext& ctx) const override;
+  void redo(const score::DocumentContext& ctx) const override;
+
+protected:
+  void serializeImpl(DataStreamInput&) const override;
+  void deserializeImpl(DataStreamOutput&) override;
+
+private:
+  Path<ProcessModel> m_path;
+  State::AddressAccessor m_old, m_new;
+};
+}
+
+
+namespace Heart
+{
+class ProcessModel;
+class ChangeHeartAddress final : public score::Command
+{
+  SCORE_COMMAND_DECL(
+      Automation::CommandFactoryName(),
+      ChangeHeartAddress,
+      "ChangeHeartAddress")
+public:
+  ChangeHeartAddress(
+      const ProcessModel& autom,
+      const State::AddressAccessor& newval);
+
+public:
+  void undo(const score::DocumentContext& ctx) const override;
+  void redo(const score::DocumentContext& ctx) const override;
+
+protected:
+  void serializeImpl(DataStreamInput&) const override;
+  void deserializeImpl(DataStreamOutput&) override;
+
+private:
+  Path<ProcessModel> m_path;
+  State::AddressAccessor m_old, m_new;
+};
+}
+
 namespace Rectangle
 {
 class ProcessModel;

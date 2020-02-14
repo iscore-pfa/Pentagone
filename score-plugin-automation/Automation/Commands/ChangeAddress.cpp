@@ -29,6 +29,9 @@
 #include <Pentagone/PentagoneModel.hpp>
 #include <Hexagon/HexagonModel.hpp>
 #include <Square/SquareModel.hpp>
+#include <Circle/CircleModel.hpp>
+#include <Infinite/InfiniteModel.hpp>
+#include <Heart/HeartModel.hpp>
 #include <Rectangle/RectangleModel.hpp>
 #include <Triangle/TriangleModel.hpp>
 
@@ -275,6 +278,101 @@ void ChangeSquareAddress::deserializeImpl(DataStreamOutput& s)
 }
 }
 
+namespace Circle
+{
+ChangeCircleAddress::ChangeCircleAddress(
+    const ProcessModel& autom,
+    const State::AddressAccessor& newval)
+    : m_path{autom}, m_old{autom.address()}, m_new{newval}
+{
+}
+
+void ChangeCircleAddress::undo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_old);
+}
+
+void ChangeCircleAddress::redo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_new);
+}
+
+void ChangeCircleAddress::serializeImpl(DataStreamInput& s) const
+{
+  s << m_path << m_old << m_new;
+}
+
+void ChangeCircleAddress::deserializeImpl(DataStreamOutput& s)
+{
+  s >> m_path >> m_old >> m_new;
+}
+}
+
+namespace Infinite
+{
+ChangeInfiniteAddress::ChangeInfiniteAddress(
+    const ProcessModel& autom,
+    const State::AddressAccessor& newval)
+    : m_path{autom}, m_old{autom.address()}, m_new{newval}
+{
+}
+
+void ChangeInfiniteAddress::undo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_old);
+}
+
+void ChangeInfiniteAddress::redo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_new);
+}
+
+void ChangeInfiniteAddress::serializeImpl(DataStreamInput& s) const
+{
+  s << m_path << m_old << m_new;
+}
+
+void ChangeInfiniteAddress::deserializeImpl(DataStreamOutput& s)
+{
+  s >> m_path >> m_old >> m_new;
+}
+}
+
+namespace Heart
+{
+ChangeHeartAddress::ChangeHeartAddress(
+    const ProcessModel& autom,
+    const State::AddressAccessor& newval)
+    : m_path{autom}, m_old{autom.address()}, m_new{newval}
+{
+}
+
+void ChangeHeartAddress::undo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_old);
+}
+
+void ChangeHeartAddress::redo(const score::DocumentContext& ctx) const
+{
+  auto& autom = m_path.find(ctx);
+  autom.setAddress(m_new);
+}
+
+void ChangeHeartAddress::serializeImpl(DataStreamInput& s) const
+{
+  s << m_path << m_old << m_new;
+}
+
+void ChangeHeartAddress::deserializeImpl(DataStreamOutput& s)
+{
+  s >> m_path >> m_old >> m_new;
+}
+}
 
 namespace Rectangle
 {

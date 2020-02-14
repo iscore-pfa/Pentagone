@@ -53,6 +53,18 @@
 #include <Square/SquareModel.hpp>
 #include <Square/SquarePresenter.hpp>
 #include <Square/SquareView.hpp>
+#include <Circle/CircleExecution.hpp>
+#include <Circle/CircleModel.hpp>
+#include <Circle/CirclePresenter.hpp>
+#include <Circle/CircleView.hpp>
+#include <Infinite/InfiniteExecution.hpp>
+#include <Infinite/InfiniteModel.hpp>
+#include <Infinite/InfinitePresenter.hpp>
+#include <Infinite/InfiniteView.hpp>
+#include <Heart/HeartExecution.hpp>
+#include <Heart/HeartModel.hpp>
+#include <Heart/HeartPresenter.hpp>
+#include <Heart/HeartView.hpp>
 #include <Rectangle/RectangleExecution.hpp>
 #include <Rectangle/RectangleModel.hpp>
 #include <Rectangle/RectanglePresenter.hpp>
@@ -152,6 +164,27 @@ using SquareLayerFactory = Process::
     LayerFactory_T<Square::ProcessModel, Square::Presenter, Square::View>;
 }
 
+namespace Circle
+{
+using CircleFactory = Process::ProcessFactory_T<Circle::ProcessModel>;
+using CircleLayerFactory = Process::
+    LayerFactory_T<Circle::ProcessModel, Circle::Presenter, Circle::View>;
+}
+
+namespace Infinite
+{
+using InfiniteFactory = Process::ProcessFactory_T<Infinite::ProcessModel>;
+using InfiniteLayerFactory = Process::
+    LayerFactory_T<Infinite::ProcessModel, Infinite::Presenter, Infinite::View>;
+}
+
+namespace Heart
+{
+using HeartFactory = Process::ProcessFactory_T<Heart::ProcessModel>;
+using HeartLayerFactory = Process::
+    LayerFactory_T<Heart::ProcessModel, Heart::Presenter, Heart::View>;
+}
+
 namespace Rectangle
 {
 using RectangleFactory = Process::ProcessFactory_T<Rectangle::ProcessModel>;
@@ -195,6 +228,9 @@ score_plugin_automation::factories(
          Pentagone::PentagoneFactory,
          Hexagon::HexagonFactory,
          Square::SquareFactory,
+         Circle::CircleFactory,
+         Infinite::InfiniteFactory,
+         Heart::HeartFactory,
          Rectangle::RectangleFactory,
          Triangle::TriangleFactory,
          Metronome::MetronomeFactory>,
@@ -206,6 +242,9 @@ score_plugin_automation::factories(
          Pentagone::PentagoneLayerFactory,
          Hexagon::HexagonLayerFactory,
          Square::SquareLayerFactory,
+         Circle::CircleLayerFactory,
+         Infinite::InfiniteLayerFactory,
+         Heart::HeartLayerFactory,
          Rectangle::RectangleLayerFactory,
          Triangle::TriangleLayerFactory,
          Metronome::MetronomeLayerFactory>,
@@ -219,6 +258,9 @@ score_plugin_automation::factories(
          Pentagone::InspectorFactory,
          Hexagon::InspectorFactory,
          Square::InspectorFactory,
+         Circle::InspectorFactory,
+         Infinite::InspectorFactory,
+         Heart::InspectorFactory,
          Rectangle::InspectorFactory,
          Triangle::InspectorFactory,
          Metronome::InspectorFactory>,
@@ -233,6 +275,9 @@ score_plugin_automation::factories(
          Pentagone::RecreateOnPlay::ComponentFactory,
          Hexagon::RecreateOnPlay::ComponentFactory,
          Square::RecreateOnPlay::ComponentFactory,
+         Circle::RecreateOnPlay::ComponentFactory,
+         Infinite::RecreateOnPlay::ComponentFactory,
+         Heart::RecreateOnPlay::ComponentFactory,
          Rectangle::RecreateOnPlay::ComponentFactory,
          Triangle::RecreateOnPlay::ComponentFactory,
          Metronome::RecreateOnPlay::ComponentFactory>>(ctx, key);
@@ -248,6 +293,9 @@ score_plugin_automation::make_commands()
   using namespace Pentagone;
   using namespace Hexagon;
   using namespace Square;
+  using namespace Circle;
+  using namespace Infinite;
+  using namespace Heart;
   using namespace Rectangle;
   using namespace Triangle;
   using namespace Metronome;
