@@ -75,14 +75,15 @@ void View::paint_impl(QPainter* p) const
     QPointF p = mapToCanvas(m_spline.points[i]);
     painter.drawLine(fp, p);
 
-      if (i != m_clicked)
-        if(i==0||i ==1||i==2||i==16||i ==17||i==18){
-          painter.setBrush(QColor(170, 220, 20));
-        } else {
-          painter.setBrush(QColor(170, 20, 20));
-      }
+    if (i != m_clicked) // Si i n'est pas cliqué
+      if (i != 2)
+        painter.setBrush(QColor(170, 220, 20));
       else
-        painter.setBrush(QColor(170, 220, 220));
+        painter.setBrush(QColor(255, 0, 0));
+    else
+      painter.setBrush(QColor(170, 220, 220));
+      //painter.setBrush(Qcolor(0, 0,255));
+
 
       painter.setPen(skin.TransparentPen());
       painter.drawEllipse(QRectF{
@@ -103,6 +104,7 @@ void View::updateCircle()
 
 void View::mousePressEvent(QGraphicsSceneMouseEvent* e)
 {
+  // Allow to "catch" points"
   auto btn = e->button();
   if (btn == Qt::LeftButton)
   {
@@ -124,49 +126,28 @@ void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
 {
   auto p = mapFromCanvas(e->pos());
   if (!m_clicked)
+    // If there is no click on a point
     return;
   const auto mp = *m_clicked;
   const auto N = m_spline.points.size();
 
-  if(mp==0 ||mp==1|| mp==2)
+  if (mp < N && mp == 2)
   {
-    m_spline.points[mp] = p;
-    m_spline.points[mp+1] = p;
-    m_spline.points[mp+2] = p;
+    m_spline.points[mp] = {p.x(),p.x()};
+    m_spline.points[0] = {p.x()/2,0};
+    m_spline.points[1] = {p.x(),0};
+    m_spline.points[3] = {p.x()/2,p.x()};
+    m_spline.points[4] = {0,p.x()};
+    m_spline.points[6] = {p.x()/2,0};
 
-    double distance;
-    double new_dist;
-    double new_scale;
-    double rotation;
-    double angle_sup;
-    int i;
-
-    double anglefixe = (2*PI)/4;
-    int cmpt_point = 0;
-    int num_point = 2;
-    new_dist = sqrt(pow(p.x()-0.5,2)+pow(p.y()-0.5,2));
-    rotation = acos((p.x()-0.5)/new_dist);
-    if(p.y()<0.5){
-      angle_sup = rotation;
-    }else{
-      angle_sup = -rotation;
-    }
-
-    for(i=0;i<16;i++){
-      if((i<mp) ||(i>mp+2)){
-        m_spline.points[i]={cos((num_point-2)*anglefixe-angle_sup)*new_dist+0.5,
-                            sin((num_point-2)*anglefixe-angle_sup)*new_dist+0.5};
-      }
-      cmpt_point++;
-      if(cmpt_point==3){
-        num_point++;
-        cmpt_point = 0;
-      }
-     }
-
+    std::cout << "Coords de p : " << p.x() << " " << p.y();
 
     updateCircle();
     update();
+  }
+
+
+
   }
 }
 

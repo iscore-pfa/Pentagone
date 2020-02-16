@@ -128,41 +128,22 @@ void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
   const auto mp = *m_clicked;
   const auto N = m_spline.points.size();
 
-  if(mp==0 ||mp==1|| mp==2)
+
+  if (mp < N && mp == 3)
   {
-    m_spline.points[mp] = p;
-    m_spline.points[mp+1] = p;
-    m_spline.points[mp+2] = p;
+    /* TO FINISH
+    m_spline.points[mp] = {p.x(),p.x()};
+    m_spline.points[0] = {p.x() * 0.66,p.x()*0.66};
+    m_spline.points[1] = {p.x(),p.x()/3};
+    m_spline.points[2] = {p.x(),p.x()*0.66};
+    m_spline.points[4] = {p.x()*0.66,p.x()*0.66};
+    m_spline.points[5] = {p.x()*0.33,p.x()};
+    m_spline.points[6] = {p.x()*0.33,p.x()};
 
-    double distance;
-    double new_dist;
-    double new_scale;
-    double rotation;
-    double angle_sup;
-    int i;
+*/
 
-    double anglefixe = (2*PI)/4;
-    int cmpt_point = 0;
-    int num_point = 2;
-    new_dist = sqrt(pow(p.x()-0.5,2)+pow(p.y()-0.5,2));
-    rotation = acos((p.x()-0.5)/new_dist);
-    if(p.y()<0.5){
-      angle_sup = rotation;
-    }else{
-      angle_sup = -rotation;
-    }
+    std::cout << "Coords de p : " << p.x() << " " << p.y();
 
-    for(i=0;i<16;i++){
-      if((i<mp) ||(i>mp+2)){
-        m_spline.points[i]={cos((num_point-2)*anglefixe-angle_sup)*new_dist+0.5,
-                            sin((num_point-2)*anglefixe-angle_sup)*new_dist+0.5};
-      }
-      cmpt_point++;
-      if(cmpt_point==3){
-        num_point++;
-        cmpt_point = 0;
-      }
-     }
 
 
     updateInfinite();
