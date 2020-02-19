@@ -26,15 +26,20 @@ ProcessModel::ProcessModel(
 
   outlet->type = Process::PortType::Message;
 
-  m_spline.points.push_back({0.5,0.5});
-  m_spline.points.push_back({0.75,0.25});
-  m_spline.points.push_back({1,0.5});
-  m_spline.points.push_back({0.75,0.75}); // Point 3
-  m_spline.points.push_back({0.5,0.5});
-  m_spline.points.push_back({0.25,0.25});
-  m_spline.points.push_back({0,0.5});
-  m_spline.points.push_back({0.25,0.75});
-  m_spline.points.push_back({0.5,0.5});
+  m_spline.points.push_back({0.5, 0.5});
+
+  m_spline.points.push_back({0.75, 0.25});
+
+  m_spline.points.push_back({1, 0.5});
+  m_spline.points.push_back({0.75, 0.75});
+  m_spline.points.push_back({0.5, 0.5});
+
+
+  m_spline.points.push_back({0.25, 0.25});
+  m_spline.points.push_back({0, 0.5});
+
+  m_spline.points.push_back({0.25, 0.75});
+  m_spline.points.push_back({0.5, 0.5});
 
 
 
