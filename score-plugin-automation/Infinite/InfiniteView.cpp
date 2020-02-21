@@ -75,14 +75,11 @@ void View::paint_impl(QPainter* p) const
     QPointF p = mapToCanvas(m_spline.points[i]);
     painter.drawLine(fp, p);
 
-      if (i != m_clicked)
-        if(i==0||i ==1||i==2||i==16||i ==17||i==18){
-          painter.setBrush(QColor(170, 220, 20));
-        } else {
-          painter.setBrush(QColor(170, 20, 20));
-      }
+    if (i != m_clicked)
+      if (i != 3)
+        painter.setBrush(QColor(170, 220, 20));
       else
-        painter.setBrush(QColor(170, 220, 220));
+        painter.setBrush(QColor(255, 0, 0));
 
       painter.setPen(skin.TransparentPen());
       painter.drawEllipse(QRectF{
@@ -128,19 +125,20 @@ void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
   const auto mp = *m_clicked;
   const auto N = m_spline.points.size();
 
-
-  if (mp < N && mp == 3)
+  if (mp < N && mp == 3 && p.x() < 0.75 && p.y() < 0.75)
   {
-    /* TO FINISH
     m_spline.points[mp] = {p.x(),p.x()};
-    m_spline.points[0] = {p.x() * 0.66,p.x()*0.66};
+    m_spline.points[0] = {p.x()*0.66,p.x()*0.66};
     m_spline.points[1] = {p.x(),p.x()/3};
-    m_spline.points[2] = {p.x(),p.x()*0.66};
-    m_spline.points[4] = {p.x()*0.66,p.x()*0.66};
-    m_spline.points[5] = {p.x()*0.33,p.x()};
-    m_spline.points[6] = {p.x()*0.33,p.x()};
 
-*/
+    m_spline.points[2] = {p.x()*1.33,p.x()*0.66};
+    m_spline.points[4] = {p.x()*0.66,p.x()*0.66};
+    m_spline.points[5] = {p.x()*0.33,p.x()*0.33};
+    m_spline.points[6] = {0,p.x()*0.66};
+    m_spline.points[7] = {p.x()*0.33,p.x()};
+    m_spline.points[8] = {p.x()*0.66,p.x()*0.66};
+
+
 
     std::cout << "Coords de p : " << p.x() << " " << p.y();
 
