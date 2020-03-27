@@ -153,7 +153,7 @@ void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
       angle_sup = -rotation;
     }
 
-    for(i=0;i<19;i++){
+    for(i=0;i<18;i++){
       if((i<mp) ||(i>mp+2)){
         m_spline.points[i]={cos((num_point-2)*anglefixe-angle_sup)*new_dist+0.5,
                             sin((num_point-2)*anglefixe-angle_sup)*new_dist+0.5};
