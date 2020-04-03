@@ -7,6 +7,8 @@
 #include <ossia/dataflow/nodes/spline.hpp>
 
 #include <shapes/Circle/CircleMetadata.hpp>
+#include <shapes/Heart/HeartMetadata.hpp>
+
 #include <score_plugin_automation_export.h>
 #include <verdigris>
 
@@ -52,7 +54,7 @@ public:
   }
 
   const ossia::nodes::spline_data& spline() const noexcept { return m_spline; }
-  void setCircle(const ossia::nodes::spline_data& c)
+  void setShape(const ossia::nodes::spline_data& c)
   {
     if (m_spline != c)
     {

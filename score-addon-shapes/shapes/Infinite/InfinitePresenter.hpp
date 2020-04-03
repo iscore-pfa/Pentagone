@@ -26,11 +26,11 @@ public:
 public:
   void undo(const score::DocumentContext& ctx) const override
   {
-    m_path.find(ctx).setCircle(m_old);
+    m_path.find(ctx).setShape(m_old);
   }
   void redo(const score::DocumentContext& ctx) const override
   {
-    m_path.find(ctx).setCircle(m_new);
+    m_path.find(ctx).setShape(m_new);
   }
 
 protected:
