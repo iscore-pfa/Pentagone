@@ -28,7 +28,6 @@
 #include <shapes/Infinite/InfiniteModel.hpp>
 #include <shapes/Infinite/InfinitePresenter.hpp>
 #include <shapes/Infinite/InfiniteView.hpp>
-#include <shapes/Heart/HeartExecution.hpp>
 #include <shapes/Heart/HeartModel.hpp>
 #include <shapes/Heart/HeartPresenter.hpp>
 #include <shapes/Heart/HeartView.hpp>

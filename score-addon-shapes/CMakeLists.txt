@@ -9,7 +9,6 @@ set(HDRS
     shapes/Circle/CircleModel.hpp
     shapes/Circle/CirclePresenter.hpp
     shapes/Circle/CircleView.hpp
-    shapes/Heart/HeartExecution.hpp
     shapes/Heart/HeartMetadata.hpp
     shapes/Heart/HeartModel.hpp
     shapes/Heart/HeartPresenter.hpp
@@ -59,7 +58,6 @@ set(SRCS
     shapes/Circle/CircleModel.cpp
     shapes/Circle/CirclePresenter.cpp
     shapes/Circle/CircleView.cpp
-    shapes/Heart/HeartExecution.cpp
     shapes/Heart/HeartModel.cpp
     shapes/Heart/HeartPresenter.cpp
     shapes/Heart/HeartView.cpp
