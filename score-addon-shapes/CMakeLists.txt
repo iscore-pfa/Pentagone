@@ -13,37 +13,30 @@ set(HDRS
     shapes/Heart/HeartModel.hpp
     shapes/Heart/HeartPresenter.hpp
     shapes/Heart/HeartView.hpp
-    shapes/Hexagon/HexagonExecution.hpp
     shapes/Hexagon/HexagonMetadata.hpp
     shapes/Hexagon/HexagonModel.hpp
     shapes/Hexagon/HexagonPresenter.hpp
     shapes/Hexagon/HexagonView.hpp
-    shapes/Infinite/InfiniteExecution.hpp
     shapes/Infinite/InfiniteMetadata.hpp
     shapes/Infinite/InfiniteModel.hpp
     shapes/Infinite/InfinitePresenter.hpp
     shapes/Infinite/InfiniteView.hpp
-    shapes/Pentagone/PentagoneExecution.hpp
     shapes/Pentagone/PentagoneMetadata.hpp
     shapes/Pentagone/PentagoneModel.hpp
     shapes/Pentagone/PentagonePresenter.hpp
     shapes/Pentagone/PentagoneView.hpp
-    shapes/Polygon/PolygonExecution.hpp
     shapes/Polygon/PolygonMetadata.hpp
     shapes/Polygon/PolygonModel.hpp
     shapes/Polygon/PolygonPresenter.hpp
     shapes/Polygon/PolygonView.hpp
-    shapes/Rectangle/RectangleExecution.hpp
     shapes/Rectangle/RectangleMetadata.hpp
     shapes/Rectangle/RectangleModel.hpp
     shapes/Rectangle/RectanglePresenter.hpp
     shapes/Rectangle/RectangleView.hpp
-    shapes/Square/SquareExecution.hpp
     shapes/Square/SquareMetadata.hpp
     shapes/Square/SquareModel.hpp
     shapes/Square/SquarePresenter.hpp
     shapes/Square/SquareView.hpp
-    shapes/Triangle/TriangleExecution.hpp
     shapes/Triangle/TriangleMetadata.hpp
     shapes/Triangle/TriangleModel.hpp
     shapes/Triangle/TrianglePresenter.hpp
@@ -61,31 +54,24 @@ set(SRCS
     shapes/Heart/HeartModel.cpp
     shapes/Heart/HeartPresenter.cpp
     shapes/Heart/HeartView.cpp
-    shapes/Hexagon/HexagonExecution.cpp
     shapes/Hexagon/HexagonModel.cpp
     shapes/Hexagon/HexagonPresenter.cpp
     shapes/Hexagon/HexagonView.cpp
-    shapes/Infinite/InfiniteExecution.cpp
     shapes/Infinite/InfiniteModel.cpp
     shapes/Infinite/InfinitePresenter.cpp
     shapes/Infinite/InfiniteView.cpp
-    shapes/Pentagone/PentagoneExecution.cpp
     shapes/Pentagone/PentagoneModel.cpp
     shapes/Pentagone/PentagonePresenter.cpp
     shapes/Pentagone/PentagoneView.cpp
-    shapes/Polygon/PolygonExecution.cpp
     shapes/Polygon/PolygonModel.cpp
     shapes/Polygon/PolygonPresenter.cpp
     shapes/Polygon/PolygonView.cpp
-    shapes/Rectangle/RectangleExecution.cpp
     shapes/Rectangle/RectangleModel.cpp
     shapes/Rectangle/RectanglePresenter.cpp
     shapes/Rectangle/RectangleView.cpp
-    shapes/Square/SquareExecution.cpp
     shapes/Square/SquareModel.cpp
     shapes/Square/SquarePresenter.cpp
     shapes/Square/SquareView.cpp
-    shapes/Triangle/TriangleExecution.cpp
     shapes/Triangle/TriangleModel.cpp
     shapes/Triangle/TrianglePresenter.cpp
     shapes/Triangle/TriangleView.cpp
