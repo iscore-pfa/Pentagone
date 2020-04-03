@@ -6,8 +6,10 @@
 
 #include <ossia/dataflow/nodes/spline.hpp>
 
+/*
 #include <shapes/Circle/CircleMetadata.hpp>
 #include <shapes/Heart/HeartMetadata.hpp>
+*/
 
 #include <score_plugin_automation_export.h>
 #include <verdigris>

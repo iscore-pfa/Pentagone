@@ -21,7 +21,15 @@ ProcessModel::ProcessModel(
                             Metadata<ObjectKey_k, ProcessModel>::get(),
                             parent}
 {
-
+  m_spline.points.push_back({0.5, 0.5}); // 0
+  m_spline.points.push_back({0.75, 0.25}); // 1
+  m_spline.points.push_back({1, 0.5}); // 2
+  m_spline.points.push_back({0.75, 0.75}); // 3 -- Point to handle
+  m_spline.points.push_back({0.5, 0.5}); // 4
+  m_spline.points.push_back({0.25, 0.25}); // 5
+  m_spline.points.push_back({0, 0.5}); // 6
+  m_spline.points.push_back({0.25, 0.75}); // 7
+  m_spline.points.push_back({0.5, 0.5}); // 8
   metadata().setInstanceName(*this);
 }
 

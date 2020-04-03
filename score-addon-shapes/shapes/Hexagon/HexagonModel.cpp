@@ -22,7 +22,39 @@ ProcessModel::ProcessModel(
                             Metadata<ObjectKey_k, ProcessModel>::get(),
                             parent}
 {
+  double xCenter = 0.5;
+  double yCenter = 0.5;
+  double longueur = 0.5;
+  double angle = 0;
+  double anglefixe = (2*PI)/6;
+  //"p2" 2->4
+  m_spline.points.push_back({xCenter+ cos(angle+4*anglefixe)*longueur,yCenter+ sin(angle+4*anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+4*anglefixe)*longueur,yCenter+ sin(angle+4*anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+4*anglefixe)*longueur,yCenter+ sin(angle+4*anglefixe)*longueur});
+  //"p3" 5->7
+  m_spline.points.push_back({xCenter+ cos(angle+5*anglefixe)*longueur,yCenter+ sin(angle+5*anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+5*anglefixe)*longueur,yCenter+ sin(angle+5*anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+5*anglefixe)*longueur,yCenter+ sin(angle+5*anglefixe)*longueur});
 
+  m_spline.points.push_back({xCenter+ cos(angle+6*anglefixe)*longueur,yCenter+ sin(angle+6*anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+6*anglefixe)*longueur,yCenter+ sin(angle+6*anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+6*anglefixe)*longueur,yCenter+ sin(angle+6*anglefixe)*longueur});
+  //"p4" 8->10
+  m_spline.points.push_back({xCenter+ cos(angle+anglefixe)*longueur,yCenter+ sin(angle+anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+anglefixe)*longueur,yCenter+ sin(angle+anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+anglefixe)*longueur,yCenter+ sin(angle+anglefixe)*longueur});
+  //"p5" 11->13
+  m_spline.points.push_back({xCenter+ cos(angle+2*anglefixe)*longueur,yCenter+ sin(angle+2*anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+2*anglefixe)*longueur,yCenter+ sin(angle+2*anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+2*anglefixe)*longueur,yCenter+ sin(angle+2*anglefixe)*longueur});
+  //"p6" 14->16
+  m_spline.points.push_back({xCenter+ cos(angle+3*anglefixe)*longueur,yCenter+ sin(angle+3*anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+3*anglefixe)*longueur,yCenter+ sin(angle+3*anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+3*anglefixe)*longueur,yCenter+ sin(angle+3*anglefixe)*longueur});
+  //"p7" 17->19
+  m_spline.points.push_back({xCenter+ cos(angle+4*anglefixe)*longueur,yCenter+ sin(angle+4*anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+4*anglefixe)*longueur,yCenter+ sin(angle+4*anglefixe)*longueur});
+  m_spline.points.push_back({xCenter+ cos(angle+4*anglefixe)*longueur,yCenter+ sin(angle+4*anglefixe)*longueur});
   metadata().setInstanceName(*this);
 }
 
