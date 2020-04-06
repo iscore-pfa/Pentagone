@@ -13,10 +13,10 @@ class ChangeShapes : public score::Command
 {
   SCORE_COMMAND_DECL(
       Shapes::CommandFactoryName(),
-      ChangeShapes,
-      "ChangeShapes")
+      ChangeShape,
+      "ChangeShape")
 public:
-  ChangeCircle(
+  ChangeShape(
       const ProcessModel& autom,
       const ossia::nodes::spline_data& newval)
       : m_path{autom}, m_old{autom.spline()}, m_new{newval}
@@ -53,8 +53,8 @@ class Presenter : public Process::LayerPresenter
 {
 public:
   explicit Presenter(
-      const Circle::ProcessModel& model,
-      Circle::View* view,
+      const Shapes::ProcessModel& model,
+      Shapes::View* view,
       const Process::Context& ctx,
       QObject* parent);
 
@@ -69,7 +69,7 @@ public:
   void parentGeometryChanged() override;
 
 private:
-  const Circle::ProcessModel& m_layer;
+  const Shapes::ProcessModel& m_layer;
   View* m_view{};
   ZoomRatio m_zoomRatio{};
 };

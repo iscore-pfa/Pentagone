@@ -20,12 +20,12 @@ Presenter::Presenter(
 {
   putToFront();
   connect(&m_layer, &ProcessModel::splineChanged, this, [&] {
-    m_view->setCircle(m_layer.spline());
+    m_view->setShape(m_layer.spline());
   });
 
   m_view->setShape(m_layer.spline());
   connect(m_view, &View::changed, this, [&] {
-    CommandDispatcher<>{context().context.commandStack}.submit<ChangeCircle>(
+    CommandDispatcher<>{context().context.commandStack}.submit<changeShape>(
         layer, m_view->spline());
   });
 
