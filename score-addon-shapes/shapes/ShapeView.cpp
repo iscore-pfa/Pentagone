@@ -89,7 +89,7 @@ void View::paint_impl(QPainter* p) const
   }
 }
 
-void View::updateCircle()
+void View::updateShape()
 {
   m_spl = tinyspline::BSpline{3, 2, m_spline.points.size(), TS_CLAMPED};
   ts_bspline_set_ctrlp(
@@ -114,7 +114,7 @@ void View::mousePressEvent(QGraphicsSceneMouseEvent* e)
   {
     // Delete
 
-    updateCircle();
+    updateShape();
   }
 }
 
@@ -178,4 +178,43 @@ optional<std::size_t> View::findControlPoint(QPointF point)
     return pointIndex;
   return {};
 }
+}
+
+
+template <>
+void DataStreamReader::read(const Shapes::View& autom)
+{
+  m_stream << *autom.outlet << autom.m_spline << autom.m_tween;
+
+  insertDelimiter();
+}
+template <>
+void DataStreamWriter::write(Shapes::View& autom)
+{
+  autom.outlet = Process::load_value_outlet(*this, &autom);
+  m_stream >> autom.m_spline >> autom.m_tween;
+
+  checkDelimiter();
+}
+
+template <>
+void JSONObjectReader::read(const Shapes::View& autom)
+{
+  obj["Outlet"] = toJsonObject(*autom.outlet);
+  JSONValueReader v{};
+  v.readFrom(autom.m_spline);
+  obj["Shape"] = v.val;
+  obj["Tween"] = autom.tween();
+}
+
+template <>
+void JSONObjectWriter::write(Shapes::View& autom)
+{
+  JSONObjectWriter writer{obj["Outlet"].toObject()};
+  autom.outlet = Process::load_value_outlet(writer, &autom);
+
+  autom.setTween(obj["Tween"].toBool());
+  JSONValueWriter v{};
+  v.val = obj["Shape"];
+  v.writeTo(autom.m_spline);
 }

@@ -9,7 +9,7 @@
 
 namespace Shapes
 {
-class ChangeShapes : public score::Command
+class ChangeShape : public score::Command
 {
   SCORE_COMMAND_DECL(
       Shapes::CommandFactoryName(),

@@ -3,7 +3,7 @@
 
 #include <ossia/editor/automation/tinysplinecpp.h>
 
-#include <shapes/Circle/CircleModel.hpp>
+#include <shapes/ShapeModel.hpp>
 #include <verdigris>
 namespace Shapes
 {
@@ -13,11 +13,11 @@ class View : public Process::LayerView
 public:
   View(QGraphicsItem* parent);
 
-  void setCircle(ossia::nodes::spline_data d)
+  void setShape(ossia::nodes::spline_data d)
   {
     if (d != m_spline)
       m_spline = std::move(d);
-    updateCircle();
+    updateShape();
     update();
   }
 
@@ -28,7 +28,7 @@ public:
 
 private:
   void paint_impl(QPainter*) const override;
-  void updateCircle();
+  void updateShape();
 
   void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
   void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;

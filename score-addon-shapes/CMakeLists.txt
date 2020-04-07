@@ -77,7 +77,7 @@ set(SRCS
     shapes/Triangle/TriangleView.cpp
 
     shapes/ShapeModel.cpp
-    shapes/ShapePresenter.cpp
+    shapes/ShapeView.cpp
 
     score_addon_shapes.cpp
 )
