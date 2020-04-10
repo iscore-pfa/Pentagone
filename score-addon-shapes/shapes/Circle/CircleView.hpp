@@ -6,6 +6,8 @@
 #include <shapes/ShapeModel.hpp>
 #include <verdigris>
 
+#include <wobjectimpl.h>
+
 
 W_OBJECT_IMPL(Circle::View)
 namespace Circle

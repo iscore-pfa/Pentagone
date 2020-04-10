@@ -142,7 +142,6 @@ void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
     updateCircle();
     update();
     */
-  }
 
 
 
