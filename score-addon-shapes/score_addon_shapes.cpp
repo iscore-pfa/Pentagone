@@ -154,6 +154,7 @@ score_addon_shapes::make_commands()
   using namespace Heart;
   using namespace Rectangle;
   using namespace Triangle;
+  using namespace Shapes;
   std::pair<const CommandGroupKey, CommandGeneratorMap> cmds{
       Shapes::CommandFactoryName(), CommandGeneratorMap{}};
 

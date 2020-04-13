@@ -8,6 +8,7 @@
 
 #include <ossia/detail/math.hpp>
 
+#include <shapes/ChangeShape.hpp>
 #include <shapes/Circle/CircleModel.hpp>
 #include <shapes/Circle/CirclePresenter.hpp>
 #include <shapes/Circle/CircleView.hpp>
@@ -28,7 +29,7 @@ Presenter::Presenter(
 
   m_view->setShape(m_layer.spline());
   connect(m_view, &View::changed, this, [&] {
-    CommandDispatcher<>{context().context.commandStack}.submit<ChangeShape>(
+    CommandDispatcher<>{context().context.commandStack}.submit<Shapes::ChangeShape>(
         layer, m_view->spline());
   });
 

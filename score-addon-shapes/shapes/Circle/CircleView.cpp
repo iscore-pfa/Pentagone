@@ -21,30 +21,4 @@ View::View(QGraphicsItem* parent) : Shapes::View{parent}
   this->setFlags(
       QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemClipsToShape);
 }
-
-
-}
-
-template <>
-void DataStreamReader::read(const Circle::View& autom)
-{
-  read((Shapes::View&)autom);
-}
-
-template <>
-void DataStreamWriter::write(Circle::View& autom)
-{
-  write((Shapes::View&)autom);
-}
-
-template <>
-void JSONObjectReader::read(const Circle::View& autom)
-{
-  read((Shapes::View&)autom);
-}
-
-template <>
-void JSONObjectWriter::write(Circle::View& autom)
-{
-  write((Shapes::View&)autom);
 }

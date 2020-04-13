@@ -44,6 +44,10 @@ set(HDRS
 
     shapes/CommandFactory.hpp
     shapes/ShapeExecution.hpp
+    shapes/ChangeShape.hpp
+    shapes/ShapeModel.hpp
+    shapes/ShapePresenter.hpp
+    shapes/ShapeView.hpp
 
     score_addon_shapes.hpp
 )
