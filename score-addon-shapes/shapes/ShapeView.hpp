@@ -25,7 +25,8 @@ public:
 
 public:
   void changed() W_SIGNAL(changed);
-  //void paint_impl(QPainter*) const override;
+
+protected:
   ossia::nodes::spline_point mapFromCanvas(const QPointF& point) const;
   ossia::nodes::spline_data m_spline;
   optional<std::size_t> m_clicked;
@@ -36,14 +37,13 @@ public:
   {
     return QPointF(point.x() * width(), height() - point.y() * height());
   }
+  void updateShape();
 
 
 
 private:
-  void updateShape();
 
   void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
-  void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
   void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
   //void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event) override;
   optional<std::size_t> findControlPoint(QPointF point);

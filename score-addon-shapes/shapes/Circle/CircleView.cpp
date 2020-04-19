@@ -89,5 +89,30 @@ void View::paint_impl(QPainter* p) const
     }
 }
 
+void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
+{
+  printf("Im here \n");
+  auto p = mapFromCanvas(e->pos());
+  if (!m_clicked)
+    // If there is no click on a point
+    return;
+  const auto mp = *m_clicked;
+  const auto N = m_spline.points.size();
 
+
+  if (mp < N && mp == 2 && p.x() < 1 && p.y() < 1)
+  {
+    m_spline.points[mp] = {p.x(),p.x()};
+    m_spline.points[0] = {p.x()/2,0};
+    m_spline.points[1] = {p.x(),0};
+    m_spline.points[3] = {p.x()/2,p.x()};
+    m_spline.points[4] = {0,p.x()};
+    m_spline.points[6] = {p.x()/2,0};
+
+    std::cout << "Coords de p : " << p.x() << " " << p.y();
+
+    updateShape();
+    update();
+  }
+}
 }

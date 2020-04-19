@@ -20,6 +20,7 @@ public:
 
   //using Shapes::View::View;
   void paint_impl(QPainter* p) const override;
+  void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
 
 };
 
