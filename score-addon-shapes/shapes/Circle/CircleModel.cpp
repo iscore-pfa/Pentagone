@@ -37,6 +37,8 @@ ProcessModel::ProcessModel(
   }
   }
 
+  
+
   template <>
   void DataStreamReader::read(const Circle::ProcessModel& autom)
   {

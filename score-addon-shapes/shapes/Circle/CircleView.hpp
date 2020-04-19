@@ -18,6 +18,10 @@ class View : public Shapes::View
 public:
   View(QGraphicsItem* parent);
 
-  using Shapes::View::View;
+  //using Shapes::View::View;
+  void paint_impl(QPainter* p) const override;
+
 };
+
+
 }
