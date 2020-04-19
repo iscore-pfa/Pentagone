@@ -15,19 +15,14 @@
 W_OBJECT_IMPL(Infinite::View)
 namespace Infinite
 {
-View::View(QGraphicsItem* parent) : LayerView{parent}
+View::View(QGraphicsItem* parent) : Shapes::View{parent}
 {
   static_assert(std::is_same<tinyspline::real, qreal>::value, "");
   this->setFlags(
       QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemClipsToShape);
-}
 
-ossia::nodes::spline_point View::mapFromCanvas(const QPointF& point) const
-{
-  return ossia::nodes::spline_point{(double)point.x() / width(),
-                                    1. - point.y() / height()};
-}
 
+}
 void View::paint_impl(QPainter* p) const
 {
   // TODO optimize painting here
@@ -89,34 +84,6 @@ void View::paint_impl(QPainter* p) const
   }
 }
 
-void View::updateInfinite()
-{
-  m_spl = tinyspline::BSpline{3, 2, m_spline.points.size(), TS_CLAMPED};
-  ts_bspline_set_ctrlp(
-      m_spl.data(),
-      reinterpret_cast<const tinyspline::real*>(m_spline.points.data()),
-      m_spl.data());
-}
-
-void View::mousePressEvent(QGraphicsSceneMouseEvent* e)
-{
-  auto btn = e->button();
-  if (btn == Qt::LeftButton)
-  {
-    if ((m_clicked = findControlPoint(e->pos())))
-    {
-      mouseMoveEvent(e);
-    }
-    e->accept();
-  }
-  else if (btn == Qt::RightButton)
-  {
-    // Delete
-
-    updateInfinite();
-  }
-}
-
 void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
 {
   auto p = mapFromCanvas(e->pos());
@@ -144,39 +111,9 @@ void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
 
 
 
-    updateInfinite();
+    updateShape();
     update();
   }
 }
 
-void View::mouseReleaseEvent(QGraphicsSceneMouseEvent* e)
-{
-  if (m_clicked)
-  {
-    changed();
-    m_clicked = ossia::none;
-  }
-  e->accept();
-}
-
-optional<std::size_t> View::findControlPoint(QPointF point)
-{
-  int pointIndex = -1;
-  qreal distance = -1;
-
-  const auto N = m_spline.points.size();
-  for (std::size_t i = 0; i < N; ++i)
-  {
-    qreal d = QLineF{point, mapToCanvas(m_spline.points.at(i))}.length();
-    if ((distance < 0 && d < 10) || d < distance)
-    {
-      distance = d;
-      pointIndex = i;
-    }
-  }
-
-  if (pointIndex != -1)
-    return pointIndex;
-  return {};
-}
 }

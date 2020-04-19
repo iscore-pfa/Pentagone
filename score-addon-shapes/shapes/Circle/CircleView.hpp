@@ -9,7 +9,6 @@
 
 #include <wobjectimpl.h>
 
-
 namespace Circle
 {
 class View : public Shapes::View
@@ -18,11 +17,7 @@ class View : public Shapes::View
 public:
   View(QGraphicsItem* parent);
 
-  //using Shapes::View::View;
   void paint_impl(QPainter* p) const override;
   void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
-
 };
-
-
 }

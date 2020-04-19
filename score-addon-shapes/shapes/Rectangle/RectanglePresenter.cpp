@@ -23,10 +23,10 @@ Presenter::Presenter(
 {
   putToFront();
   connect(&m_layer, &ProcessModel::splineChanged, this, [&] {
-    m_view->setRectangle(m_layer.spline());
+    m_view->setShape(m_layer.spline());
   });
 
-  m_view->setRectangle(m_layer.spline());
+  m_view->setShape(m_layer.spline());
   connect(m_view, &View::changed, this, [&] {
     CommandDispatcher<>{context().context.commandStack}.submit<ChangeRectangle>(
         layer, m_view->spline());

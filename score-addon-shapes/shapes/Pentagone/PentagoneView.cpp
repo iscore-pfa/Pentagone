@@ -6,7 +6,6 @@
 
 #include <shapes/Pentagone/PentagoneView.hpp>
 #include <cmath>
-#include <QtMath>
 // Disclaimer:
 // Part of the code comes from splineeditor.cpp from
 // the Qt project:
@@ -16,19 +15,14 @@
 W_OBJECT_IMPL(Pentagone::View)
 namespace Pentagone
 {
-View::View(QGraphicsItem* parent) : LayerView{parent}
+View::View(QGraphicsItem* parent) : Shapes::View{parent}
 {
   static_assert(std::is_same<tinyspline::real, qreal>::value, "");
   this->setFlags(
       QGraphicsItem::ItemIsFocusable | QGraphicsItem::ItemClipsToShape);
-}
 
-ossia::nodes::spline_point View::mapFromCanvas(const QPointF& point) const
-{
-  return ossia::nodes::spline_point{(double)point.x() / width(),
-                                    1. - point.y() / height()};
-}
 
+}
 void View::paint_impl(QPainter* p) const
 {
   // TODO optimize painting here
@@ -93,34 +87,6 @@ void View::paint_impl(QPainter* p) const
   }
 }
 
-void View::updatePentagone()
-{
-  m_spl = tinyspline::BSpline{3, 2, m_spline.points.size(), TS_CLAMPED};
-  ts_bspline_set_ctrlp(
-      m_spl.data(),
-      reinterpret_cast<const tinyspline::real*>(m_spline.points.data()),
-      m_spl.data());
-}
-
-void View::mousePressEvent(QGraphicsSceneMouseEvent* e)
-{
-  auto btn = e->button();
-  if (btn == Qt::LeftButton)
-  {
-    if ((m_clicked = findControlPoint(e->pos())))
-    {
-      mouseMoveEvent(e);
-    }
-    e->accept();
-  }
-  else if (btn == Qt::RightButton)
-  {
-    // Delete
-
-    updatePentagone();
-  }
-}
-
 void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
 {
   auto p = mapFromCanvas(e->pos());
@@ -167,62 +133,9 @@ void View::mouseMoveEvent(QGraphicsSceneMouseEvent* e)
      }
 
 
-    updatePentagone();
+    updateShape();
     update();
   }
 }
 
-void View::mouseReleaseEvent(QGraphicsSceneMouseEvent* e)
-{
-  if (m_clicked)
-  {
-    changed();
-    m_clicked = ossia::none;
-  }
-  e->accept();
-}
-/*
-void View::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
-{
-  const auto newPos = mapFromCanvas(event->pos());
-  std::size_t splitIndex = 0;
-  const std::size_t N = m_spline.points.size();
-  for (std::size_t i = 0; i < N - 1; ++i)
-  {
-    if (m_spline.points[i].x() <= newPos.x())
-    {
-      splitIndex = i;
-    }
-    else
-    {
-      break;
-    }
-  }
-  m_spline.points.insert(m_spline.points.begin() + splitIndex + 1, newPos);
-
-  updateSpline();
-  changed();
-  update();
-}*/
-
-optional<std::size_t> View::findControlPoint(QPointF point)
-{
-  int pointIndex = -1;
-  qreal distance = -1;
-
-  const auto N = m_spline.points.size();
-  for (std::size_t i = 0; i < N; ++i)
-  {
-    qreal d = QLineF{point, mapToCanvas(m_spline.points.at(i))}.length();
-    if ((distance < 0 && d < 10) || d < distance)
-    {
-      distance = d;
-      pointIndex = i;
-    }
-  }
-
-  if (pointIndex != -1)
-    return pointIndex;
-  return {};
-}
 }
