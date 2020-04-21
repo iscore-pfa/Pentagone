@@ -20,6 +20,7 @@ ProcessModel::ProcessModel(
                             Metadata<ObjectKey_k, ProcessModel>::get(),
                             parent}
 {
+  printf("I'm in CircleModel \n");
   m_spline.points.push_back({0.5, 0.}); // Point 0
   m_spline.points.push_back({1, 0.});
   m_spline.points.push_back({1, 1}); // Point 2
@@ -31,13 +32,8 @@ ProcessModel::ProcessModel(
   metadata().setInstanceName(*this);
 }
 
-  ProcessModel::~ProcessModel()
-  {
-
+  ProcessModel::~ProcessModel(){  }
   }
-  }
-
-  
 
   template <>
   void DataStreamReader::read(const Circle::ProcessModel& autom)

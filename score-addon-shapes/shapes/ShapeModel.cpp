@@ -19,12 +19,13 @@ ProcessModel::ProcessModel(
     : Process::ProcessModel{duration, id, name, parent}
     , outlet{Process::make_value_outlet(Id<Process::Port>(0), this)}
 {
-
-  init();
+  printf("I'm in ShapeModel \n");
+  //init();
 }
 
 ProcessModel::~ProcessModel() {}
 
+/*
 void ProcessModel::init()
 {
   outlet->setCustomData("Out");
@@ -39,7 +40,7 @@ void ProcessModel::init()
         unitChanged(arg.qualifiers.get().unit);
       });
 }
-
+*/
 
 
 void ProcessModel::setDurationAndScale(const TimeVal& newDuration) noexcept

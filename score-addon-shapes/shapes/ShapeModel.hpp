@@ -36,10 +36,10 @@ public:
   ProcessModel(Impl& vis, QObject* parent) : Process::ProcessModel{vis, parent}
   {
     vis.writeTo(*this);
-    init();
+    //init();
   }
 
-  void init();
+  //void init();
   State::AddressAccessor address() const;
   void setAddress(const State::AddressAccessor& arg);
   State::Unit unit() const;

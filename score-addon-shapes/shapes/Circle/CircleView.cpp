@@ -25,7 +25,6 @@ View::View(QGraphicsItem* parent) : Shapes::View{parent}
 }
 void View::paint_impl(QPainter* p) const
 {
-  printf("HELLO \n");
     // TODO optimize painting here
     if (m_spline.points.empty())
       return;

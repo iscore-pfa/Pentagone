@@ -10,8 +10,6 @@
 
 #include <shapes/ShapeModel.hpp>
 #include <shapes/ShapePresenter.hpp>
-#include <shapes/Circle/CircleView.hpp>
-
 
 #include <wobjectimpl.h>
 namespace Shapes
