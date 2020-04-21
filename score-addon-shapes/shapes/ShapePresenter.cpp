@@ -8,8 +8,10 @@
 
 #include <ossia/detail/math.hpp>
 
+#include <shapes/ChangeShape.hpp>
 #include <shapes/ShapeModel.hpp>
 #include <shapes/ShapePresenter.hpp>
+#include <shapes/ShapeView.hpp>
 
 #include <wobjectimpl.h>
 namespace Shapes
@@ -21,6 +23,7 @@ Presenter::Presenter(
     QObject* parent)
     : LayerPresenter{layer, view, ctx, parent}, m_layer{layer}, m_view{view}
 {
+  printf("SHAPE PRESENTERRR \n");
   putToFront();
   connect(&m_layer, &ProcessModel::splineChanged, this, [&] {
     m_view->setShape(m_layer.spline());

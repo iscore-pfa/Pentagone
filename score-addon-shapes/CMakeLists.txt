@@ -82,6 +82,7 @@ set(SRCS
 
     shapes/ShapeModel.cpp
     shapes/ShapeView.cpp
+    shapes/ShapePresenter.cpp
 
     score_addon_shapes.cpp
 )

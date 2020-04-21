@@ -15,12 +15,14 @@
 #include <wobjectimpl.h>
 namespace Circle
 {
+
 Presenter::Presenter(
     const Circle::ProcessModel& layer,
     View* view,
     const Process::Context& ctx,
     QObject* parent)
-    : LayerPresenter{layer, view, ctx, parent}, m_layer{layer}, m_view{view}
+    : Shapes::Presenter{layer, view, ctx, parent}, m_layer{layer}, m_view{view}
+
 {
   putToFront();
   connect(&m_layer, &ProcessModel::splineChanged, this, [&] {
@@ -39,33 +41,5 @@ Presenter::Presenter(
   connect(
       m_view, &View::askContextMenu, this, &Presenter::contextMenuRequested);
 }
-
-void Presenter::setWidth(qreal val, qreal defaultWidth)
-{
-  m_view->setWidth(val);
-}
-
-void Presenter::setHeight(qreal val)
-{
-  m_view->setHeight(val);
-}
-
-void Presenter::putToFront()
-{
-  m_view->setEnabled(true);
-}
-
-void Presenter::putBehind()
-{
-  m_view->setEnabled(false);
-}
-
-void Presenter::on_zoomRatioChanged(ZoomRatio r)
-{
-  m_zoomRatio = r;
-  parentGeometryChanged();
-}
-
-void Presenter::parentGeometryChanged() {}
 
 }

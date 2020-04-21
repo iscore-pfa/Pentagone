@@ -27,7 +27,7 @@ public:
 
   void parentGeometryChanged() override;
 
-private:
+protected:
   const Shapes::ProcessModel& m_layer;
   View* m_view{};
   ZoomRatio m_zoomRatio{};
