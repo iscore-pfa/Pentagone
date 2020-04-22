@@ -23,7 +23,5 @@ private:
 
   const Circle::ProcessModel& m_layer;
   View* m_view{};
-  ZoomRatio m_zoomRatio{};
-
 };
 }

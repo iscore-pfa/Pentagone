@@ -8,27 +8,30 @@
 
 #include <ossia/detail/math.hpp>
 
+#include <shapes/ChangeShape.hpp>
 #include <shapes/Heart/HeartModel.hpp>
 #include <shapes/Heart/HeartPresenter.hpp>
 #include <shapes/Heart/HeartView.hpp>
 #include <wobjectimpl.h>
 namespace Heart
 {
+
 Presenter::Presenter(
     const Heart::ProcessModel& layer,
     View* view,
     const Process::Context& ctx,
     QObject* parent)
-    : LayerPresenter{layer, view, ctx, parent}, m_layer{layer}, m_view{view}
+    : Shapes::Presenter{layer, view, ctx, parent}, m_layer{layer}, m_view{view}
+
 {
   putToFront();
   connect(&m_layer, &ProcessModel::splineChanged, this, [&] {
-    m_view->setHeart(m_layer.spline());
+    m_view->setShape(m_layer.spline());
   });
 
-  m_view->setHeart(m_layer.spline());
+  m_view->setShape(m_layer.spline());
   connect(m_view, &View::changed, this, [&] {
-    CommandDispatcher<>{context().context.commandStack}.submit<ChangeHeart>(
+    CommandDispatcher<>{context().context.commandStack}.submit<Shapes::ChangeShape>(
         layer, m_view->spline());
   });
 
@@ -38,33 +41,5 @@ Presenter::Presenter(
   connect(
       m_view, &View::askContextMenu, this, &Presenter::contextMenuRequested);
 }
-
-void Presenter::setWidth(qreal val, qreal defaultWidth)
-{
-  m_view->setWidth(val);
-}
-
-void Presenter::setHeight(qreal val)
-{
-  m_view->setHeight(val);
-}
-
-void Presenter::putToFront()
-{
-  m_view->setEnabled(true);
-}
-
-void Presenter::putBehind()
-{
-  m_view->setEnabled(false);
-}
-
-void Presenter::on_zoomRatioChanged(ZoomRatio r)
-{
-  m_zoomRatio = r;
-  parentGeometryChanged();
-}
-
-void Presenter::parentGeometryChanged() {}
 
 }
