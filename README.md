@@ -1,1 +1,1 @@
-test
+Voici le contenu de l'addon Shape permettant de créer des formes en 2D, le score-plugin-automation était notre premier travail quand on prenait en main le logiciel, il est maintenant inutile, le dossier intéressant est le dossier score-addon-shapes regroupant essentiellement notre travail en plus d'être factorisé par rapport a ce que nous avions fait dans plugin automations
